@@ -4,23 +4,37 @@ Here are concise answers to the key networking concepts:
 
 - **IP Addressing:**
 
+  <!-- An IP address is a unique address that identifies a device on the internet or a local network. IP stands for "Internet Protocol", which is the set of rules governing the format of data sent via the internet or local network. -->
+
   - **IPv4 vs IPv6:** IPv4 uses 32-bit addresses, allowing ~4.3 billion addresses, while IPv6 uses 128-bit addresses, allowing a vastly larger address space.
   - **Public vs Private IP:** Public IPs are globally unique and routable on the internet, while private IPs are used within a local network and not routable on the internet.
   - **Subnetting and CIDR:** Subnetting divides an IP network into smaller segments; CIDR (Classless Inter-Domain Routing) notation (e.g., /24) indicates the network size.
 
-- **MAC Addressing:**
+### **MAC Addressing:**
 
-  - **MAC Address:** A unique identifier assigned to network interfaces for communication at the data link layer.
-  - **MAC vs IP:** MAC addresses are used for local network communication, while IP addresses are used for communication across networks.
+- **MAC Address:** A Media Access Control (MAC) address is a unique identifier assigned to a network interface card (NIC) for communication at the data link layer of the OSI model. It is typically a 48-bit address represented in hexadecimal (e.g., `00:1A:2B:3C:4D:5E`).
 
-- **DNS (Domain Name System):**
-  - **How DNS Works:** DNS translates domain names into IP addresses.
-  - **DNS Records:** A (IPv4 address), AAAA (IPv6 address), CNAME (alias), MX (mail server) are common DNS records.
-  - **DNS Resolution:** The process of converting a domain name into an IP address by querying DNS servers.
+- **MAC vs. IP:**
+
+  - **MAC Address** is used for local network communication within the same network segment. It ensures that data is delivered to the correct device on a local network, like within a home or office LAN.
+  - **IP Address** is used for communication across different networks, such as over the internet. It allows data to be routed between devices on different networks globally.
+
+### **DNS (Domain Name System):**
+
+- **How DNS Works:** DNS (Domain Name System) is like the phonebook of the internet, translating human-readable domain names (e.g., `www.example.com`) into IP addresses (e.g., `192.168.1.1`) that computers use to identify each other on the network.
+
+- **DNS Records:**
+
+  - **A Record:** Maps a domain to an IPv4 address.
+  - **AAAA Record:** Maps a domain to an IPv6 address.
+  - **CNAME Record:** Represents an alias for another domain name, pointing one domain to another.
+  - **MX Record:** Specifies the mail servers responsible for receiving email for a domain.
+
+- **DNS Resolution:** This is the process of converting a domain name into its corresponding IP address. When you type a domain name into your browser, your computer queries a DNS server to resolve the domain name into an IP address, allowing your browser to connect to the correct server.
 
 ### **2. Network Models:**
 
-- **OSI Model:**
+- **OSI Model:** open system interconnetion
 
   - **7 Layers:** Physical (hardware), Data Link (MAC addresses, switches), Network (IP routing), Transport (TCP/UDP), Session (maintains sessions), Presentation (data translation), Application (user-facing applications).
   - **Layer Functions:** Each layer has specific tasks, like error detection, routing, or data formatting.
