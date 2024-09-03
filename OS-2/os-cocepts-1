@@ -70,21 +70,6 @@ For an SDE role, here are the key Operating System (OS) concepts you should lear
   - Semaphores, mutexes, monitors, and how they prevent race conditions.
   - Deadlock detection, prevention, and avoidance techniques.
 
-### **7. Inter-Process Communication (IPC):**
-
-- **IPC Mechanisms:**
-  - Pipes, message queues, shared memory, and sockets.
-  - How these mechanisms allow processes to communicate and share data.
-
-### **8. Deadlocks:**
-
-- **Deadlock Conditions:**
-
-  - Necessary conditions for a deadlock: mutual exclusion, hold and wait, no preemption, circular wait.
-
-- **Deadlock Prevention and Recovery:**
-  - Techniques to prevent deadlocks (e.g., resource allocation graphs) and recover from deadlocks (e.g., process termination).
-
 ### **9. Input/Output Management:**
 
 - **I/O Devices and Operations:**
@@ -103,34 +88,6 @@ For an SDE role, here are the key Operating System (OS) concepts you should lear
 
 - **Containers:**
   - How containers (e.g., Docker) work, containerization vs virtualization, and use cases in software development.
-
-### **11. Security:**
-
-- **OS Security:**
-
-  - User authentication, access control, and security policies.
-  - Techniques to protect against common OS vulnerabilities.
-
-- **Encryption and Permissions:**
-  - File encryption, access control lists (ACLs), and other permission mechanisms.
-
-### **12. System Calls:**
-
-- **Understanding System Calls:**
-  - How system calls provide the interface between a process and the OS.
-  - Common system calls for file operations, process control, and communication.
-
-### **13. Boot Process:**
-
-- **Boot Sequence:**
-  - The steps an OS takes to boot up, from BIOS/UEFI to loading the OS kernel.
-  - Understanding boot loaders (e.g., GRUB).
-
-### **14. Networking in OS:**
-
-- **Socket Programming:**
-  - Basics of socket programming for network communication.
-  - How the OS manages network connections and data transmission.
 
 ### **15. Modern OS Concepts:**
 

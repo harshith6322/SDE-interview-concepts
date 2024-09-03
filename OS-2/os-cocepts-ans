@@ -48,21 +48,9 @@ Scheduling algorithms manage process execution: FCFS runs processes in the order
 
 Concurrency allows multiple processes or threads to run simultaneously. It can lead to issues like race conditions, where multiple threads access shared data unpredictably.
 
-### **13. Synchronization Mechanisms:**
-
-Synchronization mechanisms like semaphores and mutexes prevent race conditions by controlling access to shared resources.
-
-### **14. Inter-Process Communication (IPC):**
-
-IPC mechanisms like pipes, message queues, shared memory, and sockets allow processes to communicate and share data.
-
 ### **15. Deadlock Conditions:**
 
 A deadlock occurs when processes hold resources and wait for others, creating a cycle. It requires mutual exclusion, hold and wait, no preemption, and circular wait.
-
-### **16. Deadlock Prevention and Recovery:**
-
-Deadlock prevention uses techniques like resource allocation graphs, while recovery may involve terminating processes or rolling back to a safe state.
 
 ### **17. I/O Devices and Operations:**
 
@@ -79,26 +67,6 @@ Virtualization creates virtual versions of hardware resources using hypervisors,
 ### **20. Containers:**
 
 Containers, like Docker, package applications and their dependencies in isolated environments, providing consistency across different computing environments.
-
-### **21. OS Security:**
-
-OS security involves user authentication, access control, and security policies to protect against unauthorized access and vulnerabilities.
-
-### **22. Encryption and Permissions:**
-
-Encryption protects data by encoding it, while permissions control who can access or modify files using mechanisms like ACLs.
-
-### **23. System Calls:**
-
-System calls provide an interface between user programs and the OS, allowing processes to perform tasks like file operations and communication.
-
-### **24. Boot Sequence:**
-
-The boot process involves the system starting from BIOS/UEFI, loading the bootloader (e.g., GRUB), and then loading the OS kernel.
-
-### **25. Socket Programming:**
-
-Socket programming enables network communication between processes, with the OS managing the connections and data transmission.
 
 ### **26. Microservices and Cloud Computing:**
 
