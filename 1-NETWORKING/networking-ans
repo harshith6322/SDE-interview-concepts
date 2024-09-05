@@ -130,11 +130,6 @@ Here are concise answers to the key networking concepts:
   - **How NAT Works:** Translates private IP addresses to a public IP for internet access.
   - **Types:** SNAT (Source NAT), DNAT (Destination NAT), PAT (Port Address Translation).
 
-- **SDN (Software-Defined Networking):**
-
-  - **Concepts:** SDN separates the control plane from the data plane, allowing centralized network management.
-  - **Benefits:** Simplifies network management, enables programmability, and improves scalability.
-
 - **Cloud Networking:**
   - **How It Works:** Cloud networking involves managing networks in cloud environments, often using software-defined tools.
   - **VPC, Subnets, Route Tables:** VPC is a virtual network, subnets divide the VPC, and route tables control traffic flow.
