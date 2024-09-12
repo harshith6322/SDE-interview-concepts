@@ -1,0 +1,49 @@
+console.log(typeof null); // "object"
+
+console.log(0.1 + 0.2 === 0.3); // false
+
+console.log([1, 2] + [3, 4]); // "1,23,4"
+
+console.log([] == false); // true
+
+console.log("foo" + +"bar"); // "fooNaN"
+
+console.log(!!""); // false
+
+console.log(true + false); // 1
+
+console.log(1 < 2 < 3); // true
+
+console.log(3 > 2 > 1); // false
+
+console.log([] + {}); // "[object Object]"
+
+console.log({} + []); // 0
+
+console.log('5' - 1); // 4
+
+console.log('5' + 1); // "51"
+
+console.log([] == []); // false
+
+console.log(5 == "5"); // true
+
+console.log(5 === "5"); // false
+
+console.log(typeof NaN); // "number"
+
+console.log([] instanceof Array); // true
+
+console.log(null == undefined); // true
+
+console.log(!!null); // false
+
+console.log(typeof function() {}); // "function"
+
+console.log("10" - -"5"); // 15
+
+console.log(typeof NaN); // "number"
+
+console.log(1 + '2' + 3); // "123"
+
+console.log(1 || 0 && 0 || 1); // 1
