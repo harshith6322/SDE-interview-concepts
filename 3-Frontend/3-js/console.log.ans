@@ -1,0 +1,44 @@
++ will always convert to both string ""{
+   - String Operand: If one operand is a string, both operands are converted to strings and concatenated.
+    - Number Operand: If both operands are numbers, numeric addition is performed.
+    - Special Cases: Arrays and objects are converted to strings in specific ways that affect concatenation results.
+}
+- will always converted both into number 1 {
+  - Numeric Conversion: Both operands are converted to numbers before performing the subtraction.
+ - If Conversion to Numbers is Not Possible: The result will be NaN (Not-a-Number).
+ - Special Cases:
+    - Empty arrays are converted to 0 and non empty to 1 or num
+    - Boolean values: true becomes 1 and false becomes 0.
+}
+
+== {
+    General Rules:
+covert to number
+If either operand is a string, JavaScript will convert the other operand to a string.
+If either operand is a boolean, it will convert it to a number.
+If operands are of different types, JavaScript tries to convert them to a common type before comparison.
+
+
+console.log([1] == [1]); compare by referenses not by vlaue 
+
+}
+
+
+
+
+1.console.log(typeof null); // "object"
+===because js has an bug or every thing in js is an object
+
+2.console.log(0.1 + 0.2 === 0.3); // false  and 0.300000000004 === 0.3
+===due to precioion error in all lang in floating has preciros errors
+
+console.log([1, 2] + [3, 4]); // "1,23,4"
+====+ always convert arrys in to string soo "1,23,4"
+
+console.log([] == false); // true
+===here losse op(==) try to convert both into same data type 
+
+Summary:
+The empty array [] is converted to an empty string "".
+The false is converted to 0.
+An empty string "" is equal to 0 when using loose equality (==), so console.log([] == false); results in true.
