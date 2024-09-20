@@ -1,0 +1,52 @@
+As a DevOps engineer, you'll need to be familiar with a variety of Git commands to manage version control, collaboration, and deployment pipelines. Here are key Git commands you should know:
+
+1. **Repository Management**
+   - `git init`: Initialize a new Git repository.
+   - `git clone <repo>`: Clone a remote repository to your local machine.
+   - `git remote add <name> <url>`: Add a remote repository.
+   - `git fetch`: Download changes from the remote but don't merge them.
+
+2. **Branching and Merging**
+   - `git branch`: List, create, or delete branches.
+   - `git checkout <branch>`: Switch to another branch.
+   - `git checkout -b <new-branch>`: Create a new branch and switch to it.
+   - `git merge <branch>`: Merge a branch into your current branch.
+   - `git rebase <branch>`: Reapply commits on top of another base branch.
+
+3. **Staging and Committing**
+   - `git add <file>`: Stage a file for commit.
+   - `git add .`: Stage all changes.
+   - `git commit -m "message"`: Commit staged changes with a message.
+   - `git commit --amend`: Edit the last commit.
+
+4. **History and Logs**
+   - `git log`: View commit history.
+   - `git log --oneline --graph`: View a summarized graph of commit history.
+   - `git diff`: Show changes between commits, branches, or working directory.
+   - `git status : status of git repo
+
+5. **Collaborating**
+   - `git pull`: Fetch and merge changes from the remote.
+   - `git push`: Push local changes to the remote repository.
+   - `git push -u origin <branch>`: Push a branch to the remote for the first time.
+   - `git pull --rebase`: Keep your branch up-to-date while avoiding extra merge commits.
+
+6. **Handling Changes**
+   - `git stash`: Temporarily save uncommitted changes.
+   - `git stash pop`: Reapply stashed changes.
+   - `git reset <file>`: Unstage a file.
+   - `git reset --hard <commit>`: Reset to a specific commit, discarding changes.
+
+7. **Reverting and Fixing Mistakes**
+   - `git revert <commit>`: Revert a specific commit.
+   - `git reset --soft <commit>`: Move the HEAD to a previous commit without affecting the working directory.
+   - `git clean -f`: Remove untracked files from the working directory.
+
+8. **Tagging**
+   - `git tag <tagname>`: Tag a specific commit.
+   - `git push origin <tagname>`: Push tags to the remote.
+
+9. **Submodules**
+   - `git submodule add <repo>`: Add a submodule to a repository.
+   - `git submodule update --init --recursive`: Initialize and update submodules.
+These commands will cover most of your Git-related tasks as a DevOps engineer, helping with version control, collaboration, and automation processes.
