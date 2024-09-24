@@ -1,23 +1,4 @@
 ---Bash-cmd---
-
-3.dir- directory
-
-4 ls -list of files in dir has == -l = DETAIL OF THAT DIR,-R = TO LOOK INTO SUB DIR, -la = to see hidden file
-6.touch index.html - make new file
-7.cat - to read the 📂 files only display thr contents =-- > to write into file's
-*rm -r directory_name to remove file or folder in that directory
-*rm file1 file2 file3
-\*rm -rf directoryname rf= remove frocely
-clr -clear text in cmd
-
-8.vi index.html , to edit-i-insert, to save and exit- esc-btn && : && wq! - used to edit the file
-
-9.mv :moving files,folder from one to another place - mv movingfilename newfilename/
-
-10.cp : copy past file or folder we have use -r flag for moving folder to another folder- cp -r folder1 folder/
-
-11: node: for writing js in cmd , node filename : for running file
-
 The commands you've listed for Windows are also applicable in Ubuntu with the same or very similar syntax. Here's a breakdown of those commands and a few additional ones that might be useful for Ubuntu:
 
 ### Basic Commands (Same in Ubuntu)
@@ -38,6 +19,7 @@ The commands you've listed for Windows are also applicable in Ubuntu with the sa
 8. **vi** (or **vim** in Ubuntu) - Text editor. Use `i` to insert, `ESC` to exit insert mode, and `:wq` to save and exit.
 9. **mv** - Moves or renames files or directories.
 10. **cp** - Copies files or directories. Use `-r` to copy directories.
+11. **dir**- directory
 
 ### Additional Useful Ubuntu Commands
 

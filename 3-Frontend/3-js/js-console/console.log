@@ -14,7 +14,7 @@ console.log({} == false); // false
 console.log([] - true);//"" to 0 -1 = -1
 console.log({} + true);//[object obect]1
 console.log([] - false);//0 -0 = 0
-console.log({} + false);//[object obect]1
+console.log({} + false);//[object obect]false
 console.log(!!""); //"" to 0 and !!0 = false
 console.log(true + false); //1+0=1
 console.log(1 < 2 < 3); // 1<2= t=1<3=t
@@ -38,3 +38,40 @@ console.log(typeof null); // "object"
 console.log([] instanceof Array); // true
 console.log([1, 2] + [3, 4]); // "1,23,4"
 console.log(true + false); //1+0 =  1
+
+
+
+
+
+
+Here's a table of JavaScript operator precedence, listed from highest to lowest:
+
+| Precedence Level | Operator(s)                | Description                          |
+|-------------------|----------------------------|--------------------------------------|
+| 1                 | `()`                       | Grouping                             |
+| 2                 | `.`                        | Member access                        |
+| 3                 | `[]`                       | Array indexing                       |
+| 4                 | `new`                      | Constructor invocation               |
+| 5                 | `++` `--`                  | Unary increment/decrement            |
+| 6                 | `+` `-`                    | Unary plus/minus                    |
+| 7                 | `!` `~`                    | Logical NOT, bitwise NOT            |
+| 8                 | `**`                       | Exponentiation                       |
+| 9                 | `*` `/` `%`                | Multiplication, division, modulo     |
+| 10                | `+` `-`                    | Addition, subtraction                |
+| 11                | `<<` `>>` `>>>`           | Bitwise shifts                       |
+| 12                | `<` `<=` `>` `>=`         | Relational operators                 |
+| 13                | `instanceof`              | Type checking                       |
+| 14                | `==` `!=` `===` `!==`     | Equality operators                   |
+| 15                | `&`                        | Bitwise AND                          |
+| 16                | `^`                        | Bitwise XOR                          |
+| 17                | `|`                        | Bitwise OR                           |
+| 18                | `&&`                       | Logical AND                          |
+| 19                | `||`                       | Logical OR                           |
+| 20                | `? :`                      | Ternary conditional                  |
+| 21                | `=` `+=` `-=` `*=` etc.   | Assignment operators                 |
+| 22                | `yield`                    | Yield operator                       |
+| 23                | `,`                        | Comma operator                       |
+
+### Notes:
+- Operators with higher precedence are evaluated before those with lower precedence.
+- When operators have the same precedence, the evaluation is typically from left to right, except for assignment operators, which are right to left.
