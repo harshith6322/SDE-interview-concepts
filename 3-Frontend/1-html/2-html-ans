@@ -58,12 +58,20 @@ Here are some HTML questions that you might encounter in an interview for an SDE
 
    - HTML tags are the syntax used to create elements, while elements are the structure that is created when a browser renders the HTML tags.
 
+🟠In summary:
+Tags are the markers used to create elements.
+Elements are the combination of tags and the content they contain.
+
 4. **What is the purpose of the `<!DOCTYPE html>` declaration?**
 
    - It informs the browser about the HTML version being used and ensures that the page is rendered correctly.
 
 5. **Explain the difference between `<div>` and `<span>` elements.**
    - `<div>` is a block-level element used for structuring content, while `<span>` is an inline element used to style or group small pieces of content within a block.
+
+🟠Key Differences:
+Inline: No width, height, margin, or padding can be applied (except horizontal margin/padding).
+Inline-block: Width, height, margin, and padding can be applied, while the element still flows inline with other elements.
 
 ### **Intermediate HTML Questions**
 
