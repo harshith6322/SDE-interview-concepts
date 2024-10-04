@@ -120,7 +120,7 @@ In both cases, you will need to modify the Tailwind configuration file slightly.
 
 ### **7. Display**
 
-- `block`, `inline-block`, `inline`, `flex`, `grid`, `inline-grid`, `hidden`.
+- `block`, `inline-block`, `inline`, `flex`,inline-flex `grid`, `inline-grid`, `hidden , none`.
 
 ---
 
@@ -251,7 +251,10 @@ This markdown version of your notes makes it easier to read and follow!
 
 ### 2. **Animations**
 
-- Tailwind provides a set of built-in animations using utilities like `animate-spin`, `animate-ping`, `animate-pulse`, `animate-bounce`.
+- Tailwind provides a set of built-in animations using utilities like
+
+`animate-spin`, `animate-ping`, `animate-pulse`, `animate-bounce`.
+
 - Example: `animate-spin` will rotate an element indefinitely.
 - You can also create custom animations using `@keyframes` in the `@layer` directive in your CSS.
 

@@ -39,6 +39,7 @@ As a DevOps engineer, you'll need to be familiar with a variety of Git commands 
 
 7. **Reverting and Fixing Mistakes**
    - `git revert <commit>`: Revert a specific commit.
+   - `git revert -m 1 ` : revert an merge commit
    - `git reset --soft <commit>`: Move the HEAD to a previous commit without affecting the working directory.
    - `git clean -f`: Remove untracked files from the working directory.
 
