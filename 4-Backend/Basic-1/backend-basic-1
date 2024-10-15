@@ -1,0 +1,164 @@
+Here’s a list of some important HTTP status codes along with a brief, two-word description for each:
+
+### 1xx - Informational
+
+- **100 Continue**: Proceed request
+- **101 Switching Protocols**: Protocol change
+
+### 2xx - Success
+
+- **200 OK**: Success response
+- **201 Created**: Resource made
+- **202 Accepted**: Request accepted
+- **204 No Content**: No data
+
+### 3xx - Redirection
+
+- **301 Moved Permanently**: Resource relocated
+- **302 Found**: Temporary redirect
+- **304 Not Modified**: Cached resource
+
+### 4xx - Client Errors
+
+- **400 Bad Request**: Invalid request
+- **401 Unauthorized**: Authentication required
+- **403 Forbidden**: Access denied
+- **404 Not Found**: Resource missing
+- **405 Method Not Allowed**: Method restricted
+- **409 Conflict**: Request conflict
+- **429 Too Many Requests**: Rate limit
+
+### 5xx - Server Errors
+
+- **500 Internal Server Error**: Server malfunction
+- **501 Not Implemented**: Method unsupported
+- **502 Bad Gateway**: Invalid response
+- **503 Service Unavailable**: Server overload
+- **504 Gateway Timeout**: Response delay
+
+These status codes help communicate the state of an HTTP request, making it easier for developers and users to understand what’s happening with their requests. Let me know if you need more details on any specific status code!
+
+The main HTTP methods used in RESTful APIs correspond to CRUD operations (Create, Read, Update, Delete). Here’s a summary of each, along with an example for each method:
+
+### 1. **GET** (Read)
+
+- **Purpose**: Retrieve data from a server.
+- **Example**: Fetching a list of users.
+- **Request**:
+  ```
+  GET /api/users
+  ```
+- **Response**:
+  ```json
+  [
+    {
+      "id": 1,
+      "name": "Alice",
+      "email": "alice@example.com"
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "email": "bob@example.com"
+    }
+  ]
+  ```
+
+### 2. **POST** (Create)
+
+- **Purpose**: Create a new resource on the server.
+- **Example**: Creating a new user.
+- **Request**:
+  ```
+  POST /api/users
+  ```
+  ```json
+  {
+    "name": "Charlie",
+    "email": "charlie@example.com"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "id": 3,
+    "name": "Charlie",
+    "email": "charlie@example.com"
+  }
+  ```
+- **Status**: `201 Created` (typically)
+
+### 3. **PUT** (Update/Replace)
+
+- **Purpose**: Update an existing resource or replace it completely.
+- **Example**: Updating a user’s information.
+- **Request**:
+  ```
+  PUT /api/users/1
+  ```
+  ```json
+  {
+    "name": "Alice Updated",
+    "email": "alice.updated@example.com"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "id": 1,
+    "name": "Alice Updated",
+    "email": "alice.updated@example.com"
+  }
+  ```
+- **Status**: `200 OK` or `204 No Content` if no response body is needed
+
+### 4. **PATCH** (Partial Update)
+
+- **Purpose**: Partially update an existing resource.
+- **Example**: Updating just the email of a user.
+- **Request**:
+  ```
+  PATCH /api/users/1
+  ```
+  ```json
+  {
+    "email": "alice.newemail@example.com"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "id": 1,
+    "name": "Alice",
+    "email": "alice.newemail@example.com"
+  }
+  ```
+- **Status**: `200 OK` or `204 No Content` if no response body is needed
+
+### 5. **DELETE** (Delete)
+
+- **Purpose**: Delete a resource from the server.
+- **Example**: Deleting a user by ID.
+- **Request**:
+  ```
+  DELETE /api/users/1
+  ```
+- **Response**:
+  ```json
+  {
+    "message": "User deleted successfully."
+  }
+  ```
+- **Status**: `200 OK` or `204 No Content`
+
+### Summary Table
+
+| HTTP Method | CRUD Operation | Example Endpoint      | Description                     |
+| ----------- | -------------- | --------------------- | ------------------------------- |
+| **GET**     | Read           | `GET /api/users`      | Retrieve data or resources.     |
+| **POST**    | Create         | `POST /api/users`     | Add new data or resources.      |
+| **PUT**     | Update/Replace | `PUT /api/users/1`    | Replace existing data entirely. |
+| **PATCH**   | Update         | `PATCH /api/users/1`  | Partially update existing data. |
+| **DELETE**  | Delete         | `DELETE /api/users/1` | Remove data or resources.       |
+
+These methods are the backbone of RESTful APIs, allowing you to interact with resources in a structured way. Let me know if you need further details on any of these!

@@ -7,9 +7,9 @@
 1.html --------1-✔️
 2.css    --------2-✔️
 3.sass    --------3-✔️
-4.js , oops      -------every-day
+4.js , oops      -------every-day ----✔️
 5.react.js , redux  --------evry-day-
-6.tailwind.css ---------4-
+6.tailwind.css ---------4-✔️
 
 
 7.ts-------70%

@@ -1,0 +1,502 @@
+### **React.js Overview**
+
+React is a **JavaScript library** developed by Facebook for building **user interfaces**. It is primarily used for developing **single-page applications (SPA)** and allows for the creation of reusable UI components.
+
+#### **Key Features of React**:
+
+1. **Component-based** – Build encapsulated components that manage their own state.
+2. **Declarative** – React updates the DOM automatically when the state changes.
+3. **State-driven** – UI updates dynamically based on the state.
+4. **Highly reusable components**.
+5. **One-way data binding** – Ensures predictable data flow.
+
+---
+
+### **Components in React**
+
+1. **Components** are the building blocks of any React application, representing a piece of UI with its own data, logic, and appearance.
+2. Components can be:
+   - **Reused** across the application.
+   - **Nested** within other components.
+   - **Passed data** between each other.
+
+#### Example of a Component:
+
+```jsx
+function Pizza() {
+  return (
+    <div>
+      <img src="pizzas/spinaci.jpg" alt="Pizza Spinaci" />
+      <h3>Pizza Spinaci</h3>
+      <p>Tomato, mozzarella, spinach, and ricotta cheese</p>
+    </div>
+  );
+}
+```
+
+---
+
+### **Styling in React**
+
+1. **Class-based styling**: Use `className` to apply CSS in JSX.
+
+   ```jsx
+   <header className="header">
+     <h1>Fast React Pizza Co.</h1>
+   </header>
+   ```
+
+2. **Inline and object styles**: Styles can be written as objects using camelCase syntax.
+   ```jsx
+   const style = { color: "red", fontSize: "48px" };
+   <h1 style={style}>Fast React Pizza Co.</h1>;
+   ```
+
+---
+
+### **JSX (JavaScript XML)**
+
+1. **JSX** is a syntax extension of JavaScript, combining HTML-like syntax with JavaScript logic.
+2. JSX makes it easier to create and organize UI components in React.
+
+---
+
+### **Props in React**
+
+1. **Props** (short for properties) allow components to receive data from their parent component.
+2. They are **immutable** and **read-only**. Props provide a way to **configure and customize** components.
+3. Props are passed **downward** (parent to child), ensuring one-way data flow.
+
+#### Example of Passing Props:
+
+```jsx
+function Openhr({ closehr }) {
+  return <p>We are open now until {closehr}:00</p>;
+}
+```
+
+---
+
+### **React Fragmentation**
+
+1. **React Fragments** (`<></>`) allow you to group multiple elements without adding extra nodes to the DOM.
+
+---
+
+### **Conditional Rendering**
+
+1. Use the **ternary operator** to handle conditional rendering in JSX:
+
+   ```jsx
+   age >= 18 ? "He can drink" : "He cannot drink";
+   ```
+
+2. **Short-circuiting** with `&&` and `||`:
+   - `true && expression` evaluates the expression.
+   - `false || expression` evaluates the expression if the first part is false.
+
+---
+
+### **Handling Events in React**
+
+1. Events like `onClick` or `onMouseEnter` can be handled in JSX:
+   ```jsx
+   <button onClick={handleNext}>Next</button>
+   ```
+
+---
+
+### **State in React**
+
+1. **State** represents data that can change over time. React updates the UI automatically when state changes.
+2. Use the `useState` hook to create state:
+
+   ```jsx
+   const [step, setStep] = useState(1);
+   ```
+
+3. **State-driven components** are rerendered when their state changes, without manually manipulating the DOM.
+
+---
+
+### **Controlled Elements Using State**
+
+1. Controlled components allow form data to be handled via React's state.
+   ```jsx
+   <input value={state} onChange={(e) => setState(e.target.value)} />
+   ```
+
+---
+
+### **State Management in React**
+
+1. **Local state vs Global state**:
+   - Local state affects only the component it's defined in.
+   - Global state can be shared across multiple components using **context** or external libraries like **Redux**.
+2. **Lifting State**: Passing state from a parent component down to its children via props.
+
+3. **Derived state**: Deriving new values from existing state.
+
+---
+
+### **Component Composition and Reusability**
+
+1. **Component composition** is the process of combining multiple components to build complex UIs.
+2. You can pass children elements to components using the `children` prop:
+
+   ```jsx
+   <Box>
+     <Content />
+   </Box>
+   ```
+
+3. **Prop drilling** occurs when data is passed down multiple levels of components.
+
+---
+
+### **Proptypes**
+
+1. **PropTypes** allow for runtime type checking of props:
+   ```jsx
+   import PropTypes from "prop-types";
+   componentName.propTypes = {
+     padding: PropTypes.number,
+   };
+   ```
+
+---
+
+### **React's Internal Working**
+
+1. **Components** are manifests that carry JSX and props. React re-renders them when needed.
+2. **Rendering**: ReactDOM renders React components to the DOM.
+3. **Diffing**: React uses the virtual DOM to efficiently update the real DOM.
+4. **Key prop**: Helps React efficiently update lists of elements without conflicts.
+
+---
+
+### **useEffect and Lifecycle Methods**
+
+1. **Lifecycle** stages:
+
+   - **Mount**: Initial rendering.
+   - **Re-render**: Changes caused by state, props, or parent component renders.
+   - **Unmount**: Component removal.
+
+2. **useEffect** is a hook that allows running side-effects after rendering. It can be controlled with the **dependency array**:
+
+   ```jsx
+   useEffect(() => {
+     // Effect code here
+   }, [dependency]);
+   ```
+
+3. **Cleanup function**: Executes when the component unmounts or before it re-renders.
+
+   ```jsx
+   useEffect(() => {
+     document.title = `Movie | ${title}`;
+     return () => (document.title = `usePopcorn`); // Cleanup function
+   }, [title]);
+   ```
+
+4. **Race condition**: Occurs when multiple API requests race to update the UI in the wrong order.
+
+---
+
+### **Thinking in React**
+
+1. **Think in terms of components**: Break down the UI into individual parts.
+2. **Component design**:
+
+   - **Logic separation**: Each component should handle one piece of logic.
+   - **Reusability**: Components should be reusable.
+   - **Low complexity**: Keep components simple.
+
+3. **Component types**:
+
+   - **Stateless components**: Handle styles and JSX only, no state.
+   - **Stateful components**: Handle both JSX, styles, and state.
+
+4. **Component structure**:
+   - **Parent components** manage layouts and structures.
+   - **Child components** handle smaller pieces of the UI.
+
+---
+
+### **Conclusion**
+
+React enables developers to build complex UIs in a structured and reusable way by focusing on components, state management, and an efficient rendering process. Understanding component composition, props, state, and hooks like `useEffect` is key to mastering React.
+
+Sure! Here's a clean version of your notes in Markdown, along with a few important concepts that were missing.
+
+---
+
+# **React.js Advanced Notes**
+
+### **Hooks in React**
+
+- **Easy to Learn, Hard to Master**: Hooks make React functional components more powerful by adding state, side effects, and more. However, mastering them, especially for performance and complex state management, can be challenging.
+
+### **Rules of Hooks**
+
+- Hooks **cannot** be used inside loops, conditions, or nested functions.
+- They **must** be used at the top level of your component.
+- Only call hooks from **React functional components** or **custom hooks**.
+
+```jsx
+// ❌ Invalid usage:
+if (condition) {
+  const [state, setState] = useState();
+}
+
+// ✅ Correct usage:
+const [state, setState] = useState();
+if (condition) {
+  // Conditional logic
+}
+```
+
+### **useState**
+
+1. **Basic Usage**:
+
+   ```jsx
+   const [count, setCount] = useState(0);
+   ```
+
+2. **Lazy Initialization**:
+
+   ```jsx
+   const [watched, setWatched] = useState(() => {
+     const storedValue = localStorage.getItem("MoviesList");
+     return JSON.parse(storedValue) || [];
+   });
+   ```
+
+3. **Setting State**:
+
+   ```jsx
+   // Directly setting:
+   setCount(200);
+
+   // Using previous state (recommended for updates based on old state):
+   setCount((prevCount) => prevCount + 1);
+   ```
+
+4. **Immutability**: Avoid mutating objects or arrays. Always return a **new copy** when updating state.
+
+---
+
+### **useRef**
+
+- **Creates a "box"** with a `.current` property that persists across renders.
+- **Use Cases**:
+  - Store mutable values (e.g., `setTimeout` ID, previous state).
+  - Access DOM elements (`document.getElementById` alternative).
+
+```jsx
+const inputEl = useRef(null);
+return <input ref={inputEl} type="text" />;
+```
+
+---
+
+### **Custom Hooks**
+
+- A way to **reuse logic** across multiple components.
+- Naming convention: Start with `use` (e.g., `useMovies`).
+
+```jsx
+function useMovies(query) {
+  const [data, setData] = useState([]);
+  // Logic here...
+  return { data, setData };
+}
+```
+
+Usage:
+
+```jsx
+const { data, setData } = useMovies("query");
+```
+
+---
+
+### **useReducer**
+
+- **Used** to handle more complex state management, similar to Redux but built into React.
+- **Syntax**:
+  ```jsx
+  const [state, dispatch] = useReducer(reducer, initialState);
+  ```
+
+---
+
+## **Single Page Applications (SPA) and Routing**
+
+1. **React Router**:
+
+   - Install with `npm i react-router-dom`.
+   - **Basic structure**:
+
+     ```jsx
+     import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+     function App() {
+       return (
+         <BrowserRouter>
+           <Routes>
+             <Route path="/" element={<Home />} />
+             <Route path="/pricing" element={<Pricing />} />
+             <Route path="*" element={<PageNotFound />} />
+           </Routes>
+         </BrowserRouter>
+       );
+     }
+     ```
+
+2. **Dynamic Routing**:
+   - **useParams**: To access route parameters.
+   - **useSearchParams**: For query parameters.
+
+---
+
+### **CSS in React**
+
+1. **CSS Modules** (local scope):
+
+   - Example:
+
+     ```jsx
+     import styles from "./App.module.css";
+
+     return <div className={styles.container}></div>;
+     ```
+
+2. **CSS-in-JS**: Libraries like **Styled Components** allow you to write CSS directly in your JS files.
+
+---
+
+## **Context API**
+
+- **Steps to Use Context API**:
+  1. Create a context:
+     ```jsx
+     const MyContext = createContext();
+     ```
+  2. Provide context:
+     ```jsx
+     <MyContext.Provider value={someValue}>
+       <Component />
+     </MyContext.Provider>
+     ```
+  3. Use context in child components:
+     ```jsx
+     const value = useContext(MyContext);
+     ```
+
+---
+
+## **Performance Optimization**
+
+1. **Memoization**:
+
+   - **memo**: Prevents re-rendering of components when props haven’t changed.
+
+     ```jsx
+     const MemoizedComponent = memo(Component);
+     ```
+
+   - **useMemo**: Memoizes the result of an expensive calculation.
+
+     ```jsx
+     const expensiveValue = useMemo(() => computeExpensiveValue(data), [data]);
+     ```
+
+   - **useCallback**: Memoizes a function to prevent it from being re-created on every render.
+     ```jsx
+     const memoizedCallback = useCallback(() => {
+       doSomething(data);
+     }, [data]);
+     ```
+
+2. **Lazy Loading**: Load components only when needed using **React.lazy()** and **Suspense**.
+
+---
+
+### **Global State Management**
+
+- **Recoil**: A popular React state management library.
+  - **Atoms**: Units of state.
+    ```jsx
+    const myAtom = atom({
+      key: "myAtom",
+      default: 0,
+    });
+    ```
+  - **Selectors**: Perform logic on atoms (like computed properties).
+  - **RecoilRoot**: Wrap your app with `RecoilRoot` for recoil to work.
+
+---
+
+### **React `Suspense`**
+
+- **Suspense** allows you to display a fallback UI (like a loader) while waiting for an asynchronous component to load.
+
+  ```jsx
+  import React, { Suspense, lazy } from "react";
+
+  const LazyComponent = lazy(() => import("./LazyComponent"));
+
+  function App() {
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <LazyComponent />
+      </Suspense>
+    );
+  }
+
+  export default App;
+  ```
+
+---
+
+### **Additional Important React Concepts**
+
+1. **Error Boundaries**:
+
+   - Used to catch JavaScript errors in components and display a fallback UI.
+   - Must be a **class component**.
+
+     ```jsx
+     class ErrorBoundary extends React.Component {
+       state = { hasError: false };
+
+       static getDerivedStateFromError(error) {
+         return { hasError: true };
+       }
+
+       componentDidCatch(error, errorInfo) {
+         // Log error
+       }
+
+       render() {
+         if (this.state.hasError) {
+           return <h1>Something went wrong.</h1>;
+         }
+
+         return this.props.children;
+       }
+     }
+     ```
+
+2. **Portals**:
+   - Render children into a DOM node outside the component hierarchy.
+     ```jsx
+     ReactDOM.createPortal(child, container);
+     ```
+
+---
+
+These notes provide a well-rounded understanding of React, from hooks to performance optimization and global state management.

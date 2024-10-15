@@ -1,0 +1,500 @@
+# MongoDB Cheat Sheet 2022
+
+> MongoDB Crash Course 2022 < TODO: Add Video Link
+
+## Table of Contents
+
+- [Check `monosh` Version](#check-monosh-version)
+- [Start the Mongo Shell](#start-the-mongo-shell)
+- [Show Current Database](#show-current-database)
+- [Show All Databases](#show-all-databases)
+- [Create Or Switch Database](#create-or-switch-database)
+- [Drop Database](#drop-database)
+- [Create Collection](#create-collection)
+- [Show Collections](#show-collections)
+- [Insert Document](#insert-document)
+- [Insert Multiple Documents](#insert-multiple-documents)
+- [Find All Documents](#find-all-documents)
+- [Find Documents with Query](#find-documents-with-query)
+- [Sort Documents](#sort-documents)
+- [Count Documents](#count-documents)
+- [Limit Documents](#limit-documents)
+- [Chaining](#chaining)
+- [Find One Document](#find-one-document)
+- [Update Document](#update-document)
+- [Update Document or Insert if not Found](#update-document-or-insert-if-not-found)
+- [Increment Field (`$inc`)](#increment-field-inc)
+- [Update Multiple Documents](#update-multiple-documents)
+- [Rename Field](#rename-field)
+- [Delete a Document](#delete-a-document)
+- [Delete Multiple Documents](#delete-multiple-documents)
+- [Greater & Less Than](#greater--less-than)
+
+## Check `monosh` Version
+
+```js
+mongosh --version
+```
+
+## Start the Mongo Shell
+
+```js
+mongosh "YOUR_CONNECTION_STRING" --username YOUR_USER_NAME
+```
+
+## Show Current Database
+
+```js
+db;
+```
+
+## Show All Databases
+
+```js
+show dbs
+```
+
+## Create Or Switch Database
+
+```js
+use blog
+```
+
+## Drop Database
+
+```js
+db.dropDatabase();
+```
+
+## Create Collection
+
+```js
+db.createCollection("posts");
+```
+
+## Show Collections
+
+```js
+show collections
+```
+
+## Insert Document
+
+```js
+db.posts.insertOne({
+  title: "Post 1",
+  body: "Body of post.",
+  category: "News",
+  likes: 1,
+  tags: ["news", "events"],
+  date: Date(),
+});
+```
+
+## Insert Multiple Documents
+
+```js
+db.posts.insertMany([
+  {
+    title: "Post 2",
+    body: "Body of post.",
+    category: "Event",
+    likes: 2,
+    tags: ["news", "events"],
+    date: Date(),
+  },
+  {
+    title: "Post 3",
+    body: "Body of post.",
+    category: "Tech",
+    likes: 3,
+    tags: ["news", "events"],
+    date: Date(),
+  },
+  {
+    title: "Post 4",
+    body: "Body of post.",
+    category: "Event",
+    likes: 4,
+    tags: ["news", "events"],
+    date: Date(),
+  },
+  {
+    title: "Post 5",
+    body: "Body of post.",
+    category: "News",
+    likes: 5,
+    tags: ["news", "events"],
+    date: Date(),
+  },
+]);
+```
+
+## Find All Documents
+
+```js
+db.posts.find();
+```
+
+## Find Documents with Query
+
+```js
+db.posts.find({ category: "News" });
+```
+
+## Sort Documents
+
+### Ascending
+
+```js
+db.posts.find().sort({ title: 1 });
+```
+
+### Descending
+
+```js
+db.posts.find().sort({ title: -1 });
+```
+
+## Count Documents
+
+```js
+db.posts.find().count();
+db.posts.find({ category: "news" }).count();
+```
+
+## Limit Documents
+
+```js
+db.posts.find().limit(2);
+```
+
+## Chaining
+
+```js
+db.posts.find().limit(2).sort({ title: 1 });
+```
+
+## Find One Document
+
+```js
+db.posts.findOne({ likes: { $gt: 3 } });
+```
+
+## Update Document
+
+```js
+db.posts.updateOne(
+  { title: "Post 1" },
+  {
+    $set: {
+      category: "Tech",
+    },
+  }
+);
+```
+
+## Update Document or Insert if not Found
+
+```js
+db.posts.updateOne(
+  { title: "Post 6" },
+  {
+    $set: {
+      title: "Post 6",
+      body: "Body of post.",
+      category: "News",
+    },
+  },
+  {
+    upsert: true,
+  }
+);
+```
+
+## Increment Field (`$inc`)
+
+```js
+db.posts.updateOne(
+  { title: "Post 1" },
+  {
+    $inc: {
+      likes: 2,
+    },
+  }
+);
+```
+
+## Update Multiple Documents
+
+```js
+db.posts.updateMany(
+  {},
+  {
+    $inc: {
+      likes: 1,
+    },
+  }
+);
+```
+
+## Rename Field
+
+```js
+db.posts.updateOne(
+  { title: "Post 2" },
+  {
+    $rename: {
+      likes: "views",
+    },
+  }
+);
+```
+
+## Delete a Document
+
+```js
+db.posts.deleteOne({ title: "Post 6" });
+```
+
+## Delete Multiple Documents
+
+```js
+db.posts.deleteMany({ category: "Tech" });
+```
+
+## Greater & Less Than
+
+```js
+db.posts.find({ views: { $gt: 2 } });
+db.posts.find({ views: { $gte: 7 } });
+db.posts.find({ views: { $lt: 7 } });
+db.posts.find({ views: { $lte: 7 } });
+```
+
+Here's an expanded MongoDB cheat sheet with advanced queries, concepts like transactions, data aggregation, indexing, and more:
+
+---
+
+## Table of Contents (Extended)
+
+- [Multiple Conditions in a Query](#multiple-conditions-in-a-query)
+- [Transactions](#transactions)
+- [ACID Properties](#acid-properties)
+- [Data Aggregation](#data-aggregation)
+- [Indexing](#indexing)
+- [Text Search](#text-search)
+- [Using `$in` and `$or` for Advanced Queries](#using-in-and-or-for-advanced-queries)
+- [Querying with Projections](#querying-with-projections)
+- [Aggregate Query Examples](#aggregate-query-examples)
+- [Lookups (Joins)](#lookups-joins)
+
+---
+
+### Multiple Conditions in a Query
+
+You can use `$and`, `$or`, `$in`, and `$nor` to combine multiple conditions:
+
+```js
+// Using $and
+db.posts.find({
+  $and: [{ category: "News" }, { likes: { $gt: 3 } }],
+});
+
+// Using $or
+db.posts.find({
+  $or: [{ category: "News" }, { category: "Tech" }],
+});
+
+// Using $in
+db.posts.find({
+  category: { $in: ["News", "Event"] },
+});
+
+// Using $nor (not in the specified categories)
+db.posts.find({
+  $nor: [{ category: "News" }, { category: "Tech" }],
+});
+```
+
+---
+
+### Transactions
+
+Transactions in MongoDB allow you to perform multiple read and write operations across different documents and collections as a single, atomic operation. This is useful for maintaining data integrity in complex operations.
+
+```js
+const session = db.startSession();
+session.startTransaction();
+try {
+  db.collection("posts").insertOne({ title: "New Post" }, { session });
+  db.collection("users").updateOne(
+    { name: "Alice" },
+    { $inc: { postCount: 1 } },
+    { session }
+  );
+
+  // Commit the transaction
+  session.commitTransaction();
+} catch (error) {
+  session.abortTransaction();
+  console.error("Transaction aborted due to error:", error);
+} finally {
+  session.endSession();
+}
+```
+
+---
+
+### ACID Properties
+
+MongoDB transactions adhere to **ACID** properties:
+
+- **Atomicity**: All operations within a transaction are completed successfully or rolled back entirely.
+- **Consistency**: Data written during a transaction maintains the database's consistent state.
+- **Isolation**: Changes made during a transaction are not visible to other operations until the transaction is complete.
+- **Durability**: Once a transaction is committed, the changes are permanent, even in case of system failure.
+
+---
+
+### Data Aggregation
+
+Aggregation operations process data records and return computed results. It’s similar to `GROUP BY` in SQL but much more powerful.
+
+```js
+db.posts.aggregate([
+  { $match: { category: "News" } },
+  { $group: { _id: "$category", totalLikes: { $sum: "$likes" } } },
+  { $sort: { totalLikes: -1 } },
+]);
+```
+
+### Common Aggregation Stages:
+
+- `$match`: Filters documents.
+- `$group`: Groups documents by a specified field and performs operations like `$sum`, `$avg`, etc.
+- `$sort`: Sorts documents.
+- `$project`: Reshapes documents and includes/excludes fields.
+- `$limit`: Limits the number of documents.
+- `$skip`: Skips the specified number of documents.
+
+---
+
+### Indexing
+
+Indexes improve query performance by allowing MongoDB to quickly locate documents.
+
+```js
+// Create an index on the 'title' field
+db.posts.createIndex({ title: 1 });
+
+// Create a compound index on 'category' and 'likes'
+db.posts.createIndex({ category: 1, likes: -1 });
+
+// List all indexes on a collection
+db.posts.getIndexes();
+
+// Drop an index
+db.posts.dropIndex("title_1");
+```
+
+### Types of Indexes:
+
+- **Single Field**: Index on a single field.
+- **Compound**: Index on multiple fields.
+- **Text Index**: For text search.
+- **Geospatial Index**: For location-based queries.
+
+---
+
+### Text Search
+
+MongoDB allows for full-text search through text indexes.
+
+```js
+// Create a text index on the 'body' field
+db.posts.createIndex({ body: "text" });
+
+// Find posts that contain the word 'event'
+db.posts.find({ $text: { $search: "event" } });
+
+// Find posts with multiple words and sort by text score
+db.posts
+  .find({ $text: { $search: "news event" } }, { score: { $meta: "textScore" } })
+  .sort({ score: { $meta: "textScore" } });
+```
+
+---
+
+### Using `$in` and `$or` for Advanced Queries
+
+The `$in` operator allows you to match values against an array, while `$or` combines multiple query conditions.
+
+```js
+// Find documents where category is 'News' or 'Event'
+db.posts.find({
+  category: { $in: ["News", "Event"] },
+});
+
+// Find documents where likes are more than 5 or category is 'Tech'
+db.posts.find({
+  $or: [{ likes: { $gt: 5 } }, { category: "Tech" }],
+});
+```
+
+---
+
+### Querying with Projections
+
+Projections allow you to include or exclude specific fields in the result.
+
+```js
+// Include only 'title' and 'likes' fields
+db.posts.find({ category: "News" }, { title: 1, likes: 1 });
+
+// Exclude the 'body' field
+db.posts.find({ category: "News" }, { body: 0 });
+```
+
+---
+
+### Aggregate Query Examples
+
+```js
+// Calculate average likes per category
+db.posts.aggregate([
+  { $group: { _id: "$category", avgLikes: { $avg: "$likes" } } },
+]);
+
+// Get the total number of posts per category sorted in descending order
+db.posts.aggregate([
+  { $group: { _id: "$category", count: { $sum: 1 } } },
+  { $sort: { count: -1 } },
+]);
+```
+
+---
+
+### Lookups (Joins)
+
+`$lookup` allows you to perform a join between collections, similar to SQL joins.
+
+```js
+// Join 'comments' collection with 'posts' collection
+db.posts.aggregate([
+  {
+    $lookup: {
+      from: "comments",
+      localField: "_id",
+      foreignField: "postId",
+      as: "comments",
+    },
+  },
+]);
+```
+
+This will join documents from the `comments` collection that match `postId` with the `_id` field of documents in the `posts` collection.
+
+---
+
+This cheat sheet now includes more advanced MongoDB functionalities, making it a comprehensive guide for both beginners and those looking to delve deeper into MongoDB’s capabilities! Let me know if you have any questions about these topics.
