@@ -1,0 +1,149 @@
+Here is a list of common **npm** commands and their **Yarn** equivalents:
+
+### Project Initialization
+
+- **npm**: `npm init -y`
+- **Yarn**: `yarn init -y`
+
+### Installing Packages
+
+- **npm**: `npm install` or `npm i`
+- **Yarn**: `yarn` (no `install` needed)
+
+- Install a specific package:
+
+  - **npm**: `npm install <package-name>`
+  - **Yarn**: `yarn add <package-name>`
+
+- Install a package as a development dependency:
+  - **npm**: `npm install <package-name> --save-dev` or `npm i <package-name> -D`
+  - **Yarn**: `yarn add <package-name> --dev` or `yarn add <package-name> -D`
+
+### Running Scripts
+
+- **npm**: `npm run <script-name>`
+- **Yarn**: `yarn <script-name>`
+
+  - For example:
+    - **npm**: `npm run dev`
+    - **Yarn**: `yarn dev`
+
+### Starting the Server
+
+- **npm**: `npm start`
+- **Yarn**: `yarn start`
+
+- For a custom script like starting a server:
+  - **npm**: `npm run server`
+  - **Yarn**: `yarn server`
+
+### Removing Packages
+
+- **npm**: `npm uninstall <package-name>` or `npm rm <package-name>`
+- **Yarn**: `yarn remove <package-name>`
+
+### Updating Packages
+
+- **npm**: `npm update <package-name>`
+- **Yarn**: `yarn upgrade <package-name>`
+
+### Adding Packages Globally
+
+- **npm**: `npm install -g <package-name>`
+- **Yarn**: `yarn global add <package-name>`
+
+### Checking for Vulnerabilities
+
+- **npm**: `npm audit` (automatically checks for security issues)
+- **Yarn**: `yarn audit`
+
+### Clearing Cache
+
+- **npm**: `npm cache clean --force`
+- **Yarn**: `yarn cache clean`
+
+### Listing Installed Packages
+
+- **npm**: `npm list` or `npm list --depth=0` (for top-level dependencies)
+- **Yarn**: `yarn list`
+
+These commands form a solid foundation, but there are a few more commands and concepts you might want to know to become a more versatile developer, especially when working with **npm** and **Yarn** in complex projects. Here are some additional commands and concepts that can be valuable:
+
+### Additional Useful Commands
+
+1. **Rebuilding Native Modules**
+
+   - If you encounter issues with native modules (e.g., after a Node.js version update):
+     - **npm**: `npm rebuild`
+     - **Yarn**: `yarn rebuild`
+
+2. **Installing Specific Versions**
+
+   - Installing a specific version of a package:
+     - **npm**: `npm install <package-name>@<version>`
+     - **Yarn**: `yarn add <package-name>@<version>`
+
+3. **Viewing Outdated Packages**
+
+   - Useful for seeing if there are newer versions of packages:
+     - **npm**: `npm outdated`
+     - **Yarn**: `yarn outdated`
+
+4. **Force Installing/Updating**
+
+   - If you need to force the resolution of dependencies:
+     - **npm**: `npm install --force`
+     - **Yarn**: `yarn install --force`
+
+5. **Cleaning Node Modules**
+   - To clear out `node_modules` and reinstall:
+     - **npm**: `rm -rf node_modules && npm install`
+     - **Yarn**: `rm -rf node_modules && yarn`
+
+### Advanced Concepts and Commands
+
+1. **Workspaces** (For Monorepos)
+
+   - If you manage a monorepo with multiple packages:
+     - **npm**: `npm workspaces`
+     - **Yarn**: `yarn workspaces`
+
+2. **Package Locking**
+
+   - If you need to regenerate a lock file:
+     - **npm**: `npm install --package-lock-only`
+     - **Yarn**: `yarn install --frozen-lockfile`
+
+3. **Using npx (npm's Tool for Executing Packages)**
+
+   - **npx** is used to run Node.js binaries without globally installing them:
+     - **npm**: `npx <package-name>`
+     - Example: `npx create-react-app my-app`
+
+4. **Node Version Management**
+
+   - Switching between different versions of Node.js can be important for different projects. Tools like `nvm` (Node Version Manager) help:
+     - Install nvm, then use:
+       - `nvm install <version>`
+       - `nvm use <version>`
+
+5. **Handling Scripts Efficiently**
+   - Adding custom scripts to the `scripts` section in `package.json` helps you run commands more efficiently. Example:
+     ```json
+     "scripts": {
+       "dev": "node server.js",
+       "lint": "eslint .",
+       "test": "jest"
+     }
+     ```
+     - Run these using:
+       - **npm**: `npm run lint`
+       - **Yarn**: `yarn lint`
+
+### Some Best Practices
+
+1. **Version Control Integration**: Know how to work with Git and include `node_modules` in your `.gitignore`.
+2. **Linting and Formatting**: Use tools like ESLint and Prettier to maintain code quality.
+3. **Testing**: Get familiar with test runners like Jest or Mocha to ensure your code works as expected.
+4. **Environment Management**: Use `.env` files and libraries like `dotenv` for environment variables.
+5. **Continuous Integration (CI)**: Understand how to set up automated builds and tests with tools like GitHub Actions.
