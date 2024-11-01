@@ -1,48 +1,57 @@
-**_What is HTML?_**
+````markdown
+### **_What is HTML?_**
 
-HTML stands for Hyper Text Markup Language
-HTML is the standard markup language for creating Web pages
-HTML describes the structure of a Web page
-HTML elements tell the browser how to display the content
+- **HTML** stands for Hyper Text Markup Language.
+- HTML is the standard markup language for creating Web pages.
+- HTML describes the structure of a Web page.
+- HTML elements tell the browser how to display the content.
 
-The <!DOCTYPE html> declaration defines that this document is an HTML5 document
-The <html> element is the root element of an HTML page
-The <head> element contains meta information about the HTML page
-The <title> element specifies a title for the HTML page (which is shown in the browser's title bar or in the page's tab)
-The <body> element defines the document's body, and is a container for all the visible contents, such as headings, paragraphs, images, hyperlinks, tables, lists, etc.
-The <h1> element defines a large heading
-The <p> element defines a paragraph
+- The `<!DOCTYPE html>` declaration defines that this document is an HTML5 document.
+- The `<html>` element is the root element of an HTML page.
+- The `<head>` element contains meta information about the HTML page.
+- The `<title>` element specifies a title for the HTML page (which is shown in the browser's title bar or in the page's tab).
+- The `<body>` element defines the document's body and is a container for all visible content, such as headings, paragraphs, images, hyperlinks, tables, lists, etc.
+- The `<h1>` element defines a large heading.
+- The `<p>` element defines a paragraph.
 
-**_What is an HTML Element?_**
+### **_What is an HTML Element?_**
+
 An HTML element is defined by a start tag, some content, and an end tag:
+
+```html
 <tagname> Content goes here... </tagname>
-The HTML element is everything from the start tag to the end tag:
+```
+````
 
-Note: Some HTML elements have no content (like the <br> element). These elements are called empty elements. Empty elements do not have an end tag!
+The HTML element includes everything from the start tag to the end tag.
 
-**_HTML Attributes_**
-All HTML elements can have attributes
-Attributes provide additional information about elements
-Attributes are always specified in the start tag
-Attributes usually come in name/value pairs like: name="value"
+> **Note**: Some HTML elements have no content (like the `<br>` element). These elements are called **empty elements** and do not have an end tag.
 
-**_Using CSS_**
-CSS can be added to HTML documents in 3 ways:
+### **_HTML Attributes_**
 
-Inline - by using the style attribute inside HTML elements
-Internal - by using a <style> element in the <head> section
-External - by using a <link> element to link to an external CSS file
+- All HTML elements can have **attributes**.
+- Attributes provide additional information about elements.
+- Attributes are always specified in the start tag.
+- Attributes usually come in name/value pairs like: `name="value"`.
 
-**_target_**
-The target attribute specifies where to open the linked document.
-The target attribute can have one of the following values:
+### **_Using CSS_**
 
-\_self - Default. Opens the document in the same window/tab as it was clicked
-\_blank - Opens the document in a new window or tab
-\_parent - Opens the document in the parent frame
-\_top - Opens the document in the full body of the window
+CSS can be added to HTML documents in three ways:
 
-Here are some HTML questions that you might encounter in an interview for an SDE role:
+1. **Inline** - by using the `style` attribute inside HTML elements.
+2. **Internal** - by using a `<style>` element in the `<head>` section.
+3. **External** - by using a `<link>` element to link to an external CSS file.
+
+### **_target Attribute_**
+
+The `target` attribute specifies where to open the linked document. It can have one of the following values:
+
+- `_self` - **Default**. Opens the document in the same window/tab as it was clicked.
+- `_blank` - Opens the document in a **new window** or tab.
+- `_parent` - Opens the document in the **parent frame**.
+- `_top` - Opens the document in the **full body of the window**.
+
+---
 
 ### **Basic HTML Questions**
 
