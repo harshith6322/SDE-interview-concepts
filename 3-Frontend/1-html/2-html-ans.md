@@ -42,6 +42,22 @@ CSS can be added to HTML documents in three ways:
 2. **Internal** - by using a `<style>` element in the `<head>` section.
 3. **External** - by using a `<link>` element to link to an external CSS file.
 
+### **Class vs. ID in HTML**
+
+#### **Class**
+
+1. Classes are used to apply styling or behavior to multiple elements on a page.
+2. Classes are defined with the `class` attribute and can be reused across different elements.
+3. In CSS, classes are selected with a dot (`.`) followed by the class name (e.g., `.example`).
+
+#### **ID**
+
+1. IDs are unique to a single element on a page and should only be used once per page.
+2. IDs are defined with the `id` attribute and typically serve unique purposes, like identifying specific components.
+3. In CSS, IDs are selected with a hash (`#`) followed by the ID name (e.g., `#unique`).
+
+---
+
 ### **_target Attribute_**
 
 The `target` attribute specifies where to open the linked document. It can have one of the following values:
