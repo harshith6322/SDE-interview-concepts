@@ -1,0 +1,380 @@
+### **1. CSS Basics:**
+
+- **Selectors:**
+
+  We can divide CSS selectors into five categories:
+
+  1. Simple selectors (select elements based on name, id, class)
+  2. Combinator selectors (select elements based on a specific relationship between them)
+  3. Pseudo-class selectors (select elements based on a certain state)
+  4. Pseudo-elements selectors (select and style a part of an element)
+  5. Attribute selectors (select elements based on an attribute or attribute value)
+
+  - **Universal Selector (`*`)**: Selects all elements in the document.
+
+    ```css
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    ```
+
+  - **Type Selector (`h1`)**: Selects elements by tag name.
+
+    ```css
+    h1 {
+      color: blue;
+    }
+    ```
+
+  - **Class Selector (`.className`)**: Selects elements with a specific class.
+
+    ```css
+    .highlight {
+      background-color: yellow;
+    }
+    ```
+
+  - **ID Selector (`#idName`)**: Selects an element by its unique ID.
+
+    ```css
+    #header {
+      font-size: 2rem;
+    }
+    ```
+
+  - **Attribute Selector (`[attr=value]`)**: Selects elements based on an attribute.
+
+    ```css
+    input[type="text"] {
+      border: 1px solid #333;
+    }
+    ```
+
+  - **Pseudo-classes (`:hover`, `:focus`)**: Applies styles to elements in a specific state.
+
+    ```css
+    button:hover {
+      background-color: lightblue;
+    }
+    input:focus {
+      outline: 2px solid green;
+    }
+    ```
+
+  - **Pseudo-elements (`::before`, `::after`)**: Style parts of an element, often used to add decorative content.
+
+    ```css
+    p::before {
+      content: "Note: ";
+      font-weight: bold;
+    }
+    ```
+
+---
+
+- **Specificity:**
+
+  Specificity determines which styles are applied when multiple rules could be used. Inline styles are the most specific, followed by ID selectors, class selectors, and finally type selectors.
+
+  ```html
+  <div id="content" class="box">Hello World</div>
+  ```
+
+  ```css
+  div {
+    color: black;
+  } /* Least specific */
+  .box {
+    color: red;
+  } /* More specific */
+  #content {
+    color: green;
+  } /* Most specific */
+  ```
+
+---
+
+- **Inheritance:**
+
+  Some CSS properties are inherited from the parent element, like `color` and `font-family`.
+
+  ```css
+  body {
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  p {
+    font-size: 16px;
+  }
+  ```
+
+---
+
+- **The Box Model:**
+
+  Every element is a rectangular box that consists of `content`, `padding`, `border`, and `margin`.
+
+  ```css
+  div {
+    width: 200px;
+    padding: 10px;
+    border: 5px solid black;
+    margin: 20px;
+  }
+  ```
+
+---
+
+- **Units:**
+
+  - **Absolute units** (`px`, `in`, `cm`) have fixed sizes.
+
+    ```css
+    div {
+      width: 300px;
+    }
+    ```
+
+  - **Relative units** (`em`, `rem`, `vw`, `vh`, `%`) change depending on their context or viewport size.
+
+    ```css
+    body {
+      font-size: 16px;
+    }
+    h1 {
+      font-size: 2em; /* 2 * 16px = 32px */
+    }
+    div {
+      width: 50vw; /* 50% of the viewport width */
+    }
+    ```
+
+---
+
+### **2. CSS Layouts:**
+
+- **Display Properties:**
+
+  Controls how an element is displayed.
+
+  ```css
+  .box {
+    display: block; /* Full width */
+  }
+  .inline-box {
+    display: inline-block; /* Inline but allows width and height adjustments */
+  }
+  ```
+
+---
+
+- **Positioning:**
+
+  Controls where an element is placed in the document flow.
+
+  ```css
+  .relative-box {
+    position: relative;
+    top: 20px; /* Moves 20px from its original position */
+  }
+  .absolute-box {
+    position: absolute;
+    top: 50px;
+    left: 30px;
+  }
+  ```
+
+---
+
+- **Float and Clear:**
+
+  ```css
+  .image {
+    float: left;
+    margin: 10px;
+  }
+  .text {
+    clear: both;
+  }
+  ```
+
+---
+
+- **Flexbox:**
+
+  ```css
+  .container {
+    display: flex;
+    justify-content: center; /* Aligns items horizontally */
+    align-items: center; /* Aligns items vertically */
+    flex-direction: row; /* Horizontal direction */
+  }
+  ```
+
+---
+
+- **CSS Grid:**
+
+  ```css
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
+    grid-template-rows: auto 200px; /* Two rows, second row fixed at 200px */
+  }
+  ```
+
+---
+
+- **Multi-column Layouts:**
+
+  ```css
+  .text {
+    column-count: 3;
+    column-gap: 20px;
+  }
+  ```
+
+---
+
+- **Responsive Design:**
+
+  ```css
+  @media (max-width: 600px) {
+    .container {
+      flex-direction: column;
+    }
+  }
+  ```
+
+---
+
+### **3. CSS Styling:**
+
+- **Colors:**
+
+  ```css
+  .box {
+    background-color: #ff0000; /* Red using hex */
+    color: rgba(0, 0, 255, 0.5); /* Semi-transparent blue */
+  }
+  ```
+
+---
+
+- **Typography:**
+
+  ```css
+  p {
+    font-family: "Arial", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  ```
+
+---
+
+- **Backgrounds:**
+
+  ```css
+  body {
+    background-color: #f0f0f0;
+    background-image: url("image.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  ```
+
+---
+
+- **Borders:**
+
+  ```css
+  div {
+    border: 2px solid black;
+    border-radius: 10px; /* Rounded corners */
+  }
+  ```
+
+---
+
+- **Shadows:**
+
+  ```css
+  .box {
+    box-shadow: 2px 2px 10px rgba(1, 1, 1, 1); /* Element shadow */
+  }
+  h1 {
+    text-shadow: 1px 1px 5px #000; /* Text shadow */
+  }
+  ```
+
+---
+
+- **Gradients:**
+
+  ```css
+  .gradient {
+    background: linear-gradient(to right, red, blue);
+  }
+  ```
+
+---
+
+### **4. CSS Advanced Concepts:**
+
+- **CSS Variables (Custom Properties):**
+
+  ```css
+  :root {
+    --main-color: #3498db;
+  }
+  .box {
+    background-color: var(--main-color);
+  }
+  ```
+
+---
+
+- **CSS Preprocessors (Sass/SCSS, LESS):**
+
+  ```scss
+  $primary-color: #3498db;
+  .box {
+    background-color: $primary-color;
+  }
+  ```
+
+---
+
+- **CSS Transitions and Animations:**
+
+  ```css
+  .box {
+    transition: background-color 0.3s ease;
+  }
+  .box:hover {
+    background-color: red;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate {
+    animation: fadeIn 2s ease-in-out;
+  }
+  ```
+
+---
+
+This layout should be clearer for learning or documentation purposes while keeping the examples separated from the text. Let me know if you need more changes!

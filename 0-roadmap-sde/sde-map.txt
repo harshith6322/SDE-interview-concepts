@@ -6,45 +6,44 @@
 
 1.html --------1-✔️
 2.css    --------2-✔️
-3.sass    --------3-✔️
-4.js , oops      -------every-day ----✔️
-5.react.js , redux  --------evry-day-
-6.tailwind.css ---------4-✔️
+3.sass    --------3-
+4.js , oops      -------
+5.react.js , redux , tanstack query --------
+6.tailwind.css ---------
+7.ts-------
+8.next.js------
 
 
-7.ts-------70%
-8.next.js------60%
-
-other : next.js,ts
 
 -------------4.backend----------
 
-1.node.js
-2.express.js
-3.hono.js
-4.jwt/hashing and lib
-5.database connetions(mongodb,mongoose,sql)
+1.node.js------------
+2.express.js--------
+3.hono.js-----------
+4.jwt/hashing and lib---------
+5.database connetions(mongodb,mongoose,sql)-------
 
 
-Api: restapi,websockets =  other:graphqrl
+Api: restapi,websockets----------
 
 
 -------------5.Databases----------
 
-1.mongodb,mongoose
-2.sql,Prisma orm   ------------❌
+1.mongodb,mongoose ------------
+2.sql,Prisma orm   ---------
 
 other:redis,elasticserch
 
 
 -------------6.Devops-------------
-1.git/hub----✔️
-2.bash,Linux ---✔️
-3.ci/cd-yaml== ---✔️
-4.aws---ec2,s3,cdn,iam,k8s,vpc ---✔️
-5.container's - Dcoker,K8s,helm  ---✔️
-6.logging/monitoring --new relic&datadog or promothesus,gafna
-7.kafka
+0.docker ------✔️
+1.git/hub----
+2.bash,Linux ---
+3.ci/cd-yaml== ---
+4.aws---ec2,s3,cdn,iam,k8s,vpc ---
+5.container's - ,K8s,helm  ---
+6.logging/monitoring --new relic&datadog or promothesus,gafna------
+7.kafka-------
 
 ----advcanced----
 8.teraform
@@ -59,21 +58,4 @@ other:redis,elasticserch
 3.chrome dev   ✔️
 4.cmd ✔️
 5.postmanapi ✔️
-
-
-testing-tools : 1.jest/vites ---✔️
-2. cypress e2e 
-
--------------9.system design-----
-
-1.networking ----✔️
-2.OS--ubutntu
-3.Availability && Scalability
-
-
-
-
-
-
-
-
+6.testing-tools : 1.jest/vites , 2. cypress e2e -----
