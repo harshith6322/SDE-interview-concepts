@@ -39,6 +39,9 @@ console.log(typeof null); // "object"
 console.log([] instanceof Array); // true
 console.log([1, 2] + [3, 4]); // "1,23,4"
 console.log(true + false); //1+0 =  1
+console.log(true + true)//1+1 =2
+console.log(0===-0)//true
+console.log(1===-1)//false
 
 
 

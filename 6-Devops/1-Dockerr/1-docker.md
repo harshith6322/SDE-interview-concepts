@@ -7,6 +7,7 @@
 
 2. **List Running Containers**  
    `docker ps`
+   `docker ps -a` for all hidden containers
 
 3. **Run MongoDB in Detached Mode with Port Forwarding**  
    `docker run -d -p 27017:27017 mongo`
@@ -19,15 +20,27 @@
 
 5. **Remove an Image**  
    `docker rmi imgname`
+   `docker rmi -f mongo` to remove force fully
+   `docker rm -f $(docker ps -aq)` to remove every image
 
 6. **Build Docker Image**  
    `docker build`
+   `docker build -t image_name --no-cache` -t = tagName
+   <!-- This creates an image with the name my_image and, if you don't specify a tag, Docker uses :latest as the default tag. -->
 
-7. **Push Image to a Registry**  
+7. **Push Image to a Registry**
+   `docker login`
    `docker push`
 
 8. **Check Container Logs**  
    `docker logs <container_id>`
+
+9. **docker pause mongo**
+   `docker unpause mongo`
+
+10. **logs**
+    `docker logs <id>`
+    `docker ps -a`
 
 ---
 
