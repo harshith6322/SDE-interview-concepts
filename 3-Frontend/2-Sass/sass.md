@@ -1,4 +1,3 @@
-Here’s a breakdown of SASS (Syntactically Awesome Style Sheets) concepts with notes and examples:
 What is Sass?
 Sass stands for Syntactically Awesome Stylesheet
 Sass is an extension to CSS
@@ -118,6 +117,18 @@ This compiles to:
 button {
   background-color: #e74c3c;
   color: white;
+}
+```
+
+<!-- this is an new way to use import @use -->
+
+```css
+@use "button" as btn;
+@use "prime" as prm;
+
+.example {
+  color: btn.$color;
+  padding: prm.$spacing;
 }
 ```
 

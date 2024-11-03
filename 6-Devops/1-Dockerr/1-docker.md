@@ -4,6 +4,7 @@
 
 1. **Run MongoDB Container**  
    `docker run mongo --img`
+   `docker run img-name`
 
 2. **List Running Containers**  
    `docker ps`
@@ -35,7 +36,8 @@
 8. **Check Container Logs**  
    `docker logs <container_id>`
 
-9. **docker pause mongo**
+9. **docker pause**
+   ` docker pause mongo`
    `docker unpause mongo`
 
 10. **logs**
@@ -89,6 +91,7 @@ CMD ["node", "dist/index.js"]
 
 2. **Run an Interactive Shell in a Container**  
    `docker exec -it <container_name_or_id> /bin/bash`
+   `docker exec -it <id> psql -U postgres` --- this for psql cli
 
 ---
 
@@ -206,6 +209,13 @@ Your notes on Docker cover many key concepts, but there are a few additional imp
 #### 5. **Bind Mounts**
 
 - Bind mounts allow you to mount a specific file or directory from your host system into a container, as opposed to a volume, which is managed by Docker.
+
   ```bash
   docker run -v /path/to/host/directory:/container/directory my_image
+
+  docker run -d
+    -v /host/folder1:/container/folder1
+    -v /host/folder2:/container/folder2
+    <image_name>
+
   ```

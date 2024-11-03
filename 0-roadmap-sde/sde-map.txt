@@ -9,8 +9,8 @@
 
 ------------3.Front-end--------
 
-1.html --------1-✔️
-2.css    --------2-✔️
+1.html --------1-
+2.css    --------2-
 3.sass    --------3-
 4.js , oops      -------
 5.react.js , redux , tanstack query --------
@@ -44,7 +44,7 @@ other:redis,elasticserch
 0.docker 
 1.git/hub
 2.bash,Linux
-3.ci/cd-yaml
+3.ci/cd-yamlc
 4.aws---ec2,s3,cdn,iam,k8s,vpc 
 5.container's - ,K8s,helm  
 6.logging/monitoring --new relic&datadog or promothesus,gafna
@@ -64,3 +64,13 @@ other:redis,elasticserch
 4.cmd ✔️
 5.postmanapi ✔️
 6.testing-tools : 1.jest/vites , 2. cypress e2e 
+
+
+-----------8.other-lib----------
+1.jwt
+2.hashing
+3.pm2
+4.cookie-parser
+5.nano-id
+6.random-otp-genarator
+7.rate-limitor-application-layer
