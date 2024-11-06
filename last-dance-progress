@@ -2,17 +2,59 @@
 1.computer network--------✔️
 2.operating system--------✔️
 
-
 ---------Front-End-----------------
 1.HTML ✔️
-2.css ✔️
+2.css ✔️  flex,grid ❌
+3.sass ✔️
+4.tailwind.css ✔️ 
+5. js
+  - basics ✔️
+  - oops   ✔️
+  -methods ✔️
+  -es6     ✔️
+
+6.React.js
+7.typescript
+8.next.js
+
+---------Backend-------------------
+1.node
+2.express.js
+3.hono.js---severless
+4.lib
+  - jwt   ✔️
+  - bcript.js ✔️ 
+  - rate limiting ✔️
+  - env,cors,cookies ✔️
+
+5.database connections ✔️ 
 
 
+5. api
+ - Rest api    ✔️
+ - websockets
 
+-----------tools------------------
+1.git--git-hub  ✔️
+2.bash          ✔️ 
+3.postmanapi    ✔️ 
+4.chrome dev    ✔️
+5.vs code       ✔️
 
-
-
-
-
----------Devops-----------
+---------Devops-------------------
 1.Docker ✔️
+2.ci/cd 
+3.aws 
+  -iam,ec2,lamdafun,s3,cdn,autoscaling,
+  -vpc
+4.k8s
+5.monitoring -promethues,grafna,newreclik
+6.git,git-hub ✔️
+7.bash-cmm ✔️
+
+
+
+---------Other-------------------
+1. personal-portfolio-website  ------------✔️
+2. multiple-resumes -----------------------✔️ 
+3. all-job-profile-set --------------------✔️
