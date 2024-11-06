@@ -20,6 +20,28 @@ dog.bark();              // Calling method (Output: Woof! Woof!)
 dog.name or dog["name"]
 ```
 
+### 1.2 **Old class**
+
+Constructor Functions and the new Operator
+
+### Example:
+
+```javascript
+const Person = function (firstName, birthYear) {
+  // Instance properties
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+
+  // Never to this!
+  // this.calcAge = function () {
+  //   console.log(2037 - this.birthYear);
+  // };
+};
+
+const jonas = new Person("Jonas", 1991);
+console.log(jonas);
+```
+
 ### 2. **Classes**
 
 A class is like a blueprint to create objects. It tells you how the object should be structured. You can create many objects (instances) using a class.
