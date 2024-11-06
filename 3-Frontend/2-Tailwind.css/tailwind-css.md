@@ -62,6 +62,9 @@ In both cases, you will need to modify the Tailwind configuration file slightly.
 - Major colors: Slate, Gray, Stone (from white to black), Red, Orange, Amber, Yellow, Lime, Green, Sky, Blue, Indigo, Purple, Pink, Rose.
 - For more colors: [Tailwind Customizing Colors](https://tailwindcss.com/docs/customizing-colors)
 
+- `text-slate-50	     color: rgb(248 250 252); `.
+- `text-slate-100	     color: rgb(241 245 249);`.
+
 ### **2. Font Size**
 
 - Sizes range from `text-xs` to `text-9xl`.
@@ -102,7 +105,7 @@ In both cases, you will need to modify the Tailwind configuration file slightly.
 
 ### **3. Border**
 
-- Use `border`, `border-x-2`, `border-t-2`, etc.
+- Use `border-2`, `border-x-2`, `border-t-2`, etc.
 - Border radius: `rounded`, `rounded-md`, `rounded-lg`, `rounded-full`.
 - Border top, right, bottom, left radius: `rounded-t-lg`, `rounded-r-lg`.
 
@@ -164,6 +167,9 @@ Include this in your `index.html` to ensure full responsiveness:
 - **Align Items**: `items-start`, `items-center`, `items-baseline`.
 - **Flex Grow**: `flex-grow-0`, `flex-grow`.
 - **Order**: `order-1`, `order-last`.
+<!-- 6.align-content = content-start, content-end, content-center, content-between, content-around, content-evenly
+
+7.align-self = self-auto, self-start, self-end, self-center, self-stretch, self-baseline -->
 
 ### **Grid**
 

@@ -7,6 +7,9 @@ Sass is completely compatible with all versions of CSS
 Sass Comments
 Sass supports standard CSS comments /_ comment _/, and in addition it supports inline comments // comment:
 
+how to run sass:
+sass -w input.css out.css in cmd
+
 ### 1. **Nesting**
 
 SASS allows you to nest CSS selectors inside each other, making the code more readable and maintainable.
@@ -152,6 +155,22 @@ You define a mixin using `@mixin` and include it using `@include`.
 .card {
   @include box-shadow(0px, 2px, 5px, rgba(0, 0, 0, 0.3));
 }
+
+@mixin theme($theme: DarkGray) {
+  background: $theme;
+  box-shadow: 0 0 1px rgba($theme, 0.25);
+  color: #fff;
+}
+
+.info {
+  @include theme;
+}
+.alert {
+  @include theme($theme: DarkRed);
+}
+.success {
+  @include theme($theme: DarkGreen);
+}
 ```
 
 This compiles to:
@@ -215,6 +234,23 @@ You can perform operations on numbers, colors, and variables.
 #### Example:
 
 ```scss
+// updated new one
+@use "sass:math";
+
+.container {
+  display: flex;
+}
+
+article[role="main"] {
+  width: math.div(600px, 960px) * 100%;
+}
+
+aside[role="complementary"] {
+  width: math.div(300px, 960px) * 100%;
+  margin-left: auto;
+}
+
+//old one
 $base-font-size: 16px;
 
 h1 {

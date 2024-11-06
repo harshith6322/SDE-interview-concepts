@@ -43,3 +43,60 @@
 // }
 
 // outer()
+
+// function func() {
+//   try {
+//     console.log(1);
+//     return;
+//   } catch (e) {
+//     console.log(2);
+//   } finally {
+//     console.log(3);
+//   }
+//   console.log(4);
+// }
+// func();
+
+// let c = 0;
+// let id = setInterval(() => {
+//   console.log(c++);
+// }, 1);
+// setTimeout(() => {
+//   clearInterval(id);
+// }, 2000);
+
+// var x = 23;
+// (function () {
+//   var x = 43;
+//   (function random() {
+//     x++;
+//     console.log(x);
+//     var x = 21;
+//   })();
+// })();
+
+// let a = 3;
+// let b = new Number(3);
+// let c = 3;
+// console.log(a == b); //t
+// console.log(a === b); //f
+// console.log(b === c); //f
+
+// function guessArray() {
+//   let a = [1, 2];
+//   let b = [1, 2];
+//   console.log(a == b);
+//   console.log(a === b);
+// }
+// guessArray();
+
+var a = 1;
+function data() {
+  if (!a) {
+    var a = 10;
+  }
+  console.log(a);
+}
+
+data();
+console.log(a);

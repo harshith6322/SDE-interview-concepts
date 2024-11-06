@@ -25,6 +25,7 @@
    `docker rm -f $(docker ps -aq)` to remove every image
 
 6. **Build Docker Image**  
+    ** check the container_name should === repo name in docker hub **
    `docker build`
    `docker build -t image_name --no-cache` -t = tagName
    <!-- This creates an image with the name my_image and, if you don't specify a tag, Docker uses :latest as the default tag. -->
@@ -91,7 +92,7 @@ CMD ["node", "dist/index.js"]
 
 2. **Run an Interactive Shell in a Container**  
    `docker exec -it <container_name_or_id> /bin/bash`
-   `docker exec -it <id> psql -U postgres` --- this for psql cli
+   `docker exec -it <id> psql -U postgres --- this for psql cli`
 
 ---
 
@@ -167,30 +168,37 @@ Your notes on Docker cover many key concepts, but there are a few additional imp
 #### 2. **Docker Compose**
 
 - Useful for managing multi-container Docker applications. A `docker-compose.yml` file defines services, networks, and volumes in one place.
-  ```yaml
-  version: "3"
-  services:
-    app:
-      image: app_image
-      ports:
-        - "3000:3000"
-      environment:
-        - DATABASE_URL=your_database_url
-      networks:
-        - app-network
-    mongo:
-      image: mongo
-      volumes:
-        - data:/data/db
-      ports:
-        - "27017:27017"
-      networks:
-        - app-network
-  volumes:
-    data:
-  networks:
-    app-network:
-  ```
+
+```bash
+docker compose up
+```
+
+```yaml
+version: "3"
+services:
+  app:
+    image: app_image
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=your_database_url
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo
+    volumes:
+      - data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+
+volumes:
+  data:
+networks:
+  app-network:
+```
 
 #### 3. **Docker Swarm**
 
@@ -217,5 +225,8 @@ Your notes on Docker cover many key concepts, but there are a few additional imp
     -v /host/folder1:/container/folder1
     -v /host/folder2:/container/folder2
     <image_name>
+
+    docker run -d -v "C:\Users\rrche\Desktop\testing-pj\node:/apps" -p 3000:3000 --network node-mongo-1 c6fa1c05fb9e
+
 
   ```
