@@ -1,0 +1,120 @@
+CI/CD-------------------------------------
+
+--------------------------------------------------------------CI------------------------------------
+name: Build on PR
+
+on:
+pull_request:
+branches: - master
+
+jobs:
+
+Continuous-Integration:
+build:
+runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Generate prisma client
+        run: npm run db:generate
+
+- name: Run linting check
+  run: npm run lint:check
+
+        - name: Check formatting
+          run: npm run format:check
+
+        - name: Run Build
+          run: npm run build
+
+  -------------------------------------------------ci--on push----------------------------------
+  name: Build on Push
+
+on:
+push:
+branches: - main
+paths: - "react-reducer-old/\*\*" # Only triggers when changes are made in this path
+
+jobs:
+Continuous-Integration:
+runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out specific folder
+        uses: actions/checkout@v3
+        with:
+          # Enable sparse checkout
+          path: react-reducer-old  # Sets working directory to react-reducer-old
+          sparse-checkout: |
+            react-reducer-old
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./react-reducer-old  # Specify the path to your React project
+
+      - name: Run Linting Check
+        run: npm run lint
+        working-directory: ./react-reducer-old
+
+      - name: Run Build
+        run: npm run build
+        working-directory: ./react-reducer-old
+
+--------------------------------------------------cd-------------------------------------------
+
+name: Build and Deploy to Docker Hub
+
+on:
+push:
+branches: - master # Adjusted to trigger on pushes to master
+
+jobs:
+build-and-push:
+runs-on: ubuntu-latest
+steps: - name: Check Out Repo
+uses: actions/checkout@v2
+
+    - name: Prepare Dockerfile
+      run: cp ./docker/Dockerfile.user ./Dockerfile
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and Push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: 100xdevs/web-app:latest
+
+    - name: Verify Pushed Image
+      run: docker pull 100xdevs/web-app:latest
+
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          sudo docker pull 100xdevs/web-app:latest
+          sudo docker stop web-app || true
+          sudo docker rm web-app || true
+          sudo docker run -d --name web-app -p 3005:3000 100xdevs/web-app:latest

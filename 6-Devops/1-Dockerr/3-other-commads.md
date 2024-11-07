@@ -1,7 +1,3 @@
-Here’s an extended Docker cheat sheet with additional concepts and commands to broaden your Docker skills:
-
----
-
 ## Additional Docker Concepts & Commands
 
 ### 1. **Dockerfile Optimizations**
