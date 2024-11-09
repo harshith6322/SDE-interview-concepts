@@ -1,5 +1,3 @@
-In JavaScript, **Promises** are used for handling **asynchronous operations**. They are a modern way of managing async tasks like fetching data from an API, reading files, or executing any task that takes time and shouldn't block the execution of the rest of the code. They allow you to work with asynchronous operations in a more structured and readable way compared to **callbacks**.
-
 ### 1. What is a Promise?
 
 A **Promise** is an object that represents the eventual **completion (or failure)** of an asynchronous operation and its resulting value. It can be in one of the following states:
@@ -192,190 +190,103 @@ Promise.race([slowPromise, fastPromise])
 
 Correct! Both the **rest** and **spread** operators in JavaScript work in ways that do not modify the original array or object. Instead, they create new arrays or objects that can then be modified separately, preserving the immutability of the original data.
 
-### Spread Operator (`...`)
+---
 
-The spread operator is used to unpack elements of an array or properties of an object into a new array or object. It doesn’t modify the original array or object; instead, it creates a shallow copy.
+### `async` and `await`
 
-#### Example: Spread with Arrays
+- **`async` function**: Declares a function that will always return a promise.
+
+  - If the function returns a value, JavaScript wraps it in a resolved promise.
+  - If it throws an error, JavaScript wraps it in a rejected promise.
+
+  ```javascript
+  async function fetchData() {
+    return "Hello, world!";
+  }
+
+  fetchData().then(console.log); // Output: "Hello, world!"
+  ```
+
+- **`await` keyword**: Pauses execution in an `async` function until a promise is resolved or rejected.
+
+  - Only works inside `async` functions.
+  - It “waits” for the promise to settle, then returns the result if resolved or throws the error if rejected.
+
+  ```javascript
+  async function getUser() {
+    const user = await fetchUserFromAPI(); // waits for fetchUserFromAPI() to complete
+    console.log(user);
+  }
+  ```
+
+### Key Points
+
+- **Error handling**: Use `try...catch` for errors in `async` functions.
+- **Readability**: `async` and `await` make code with asynchronous actions (like API calls) look and behave more like synchronous code, making it easier to read and maintain.
+
+### Example
 
 ```javascript
-const originalArray = [1, 2, 3];
-const newArray = [...originalArray, 4, 5];
-
-console.log(originalArray); // Output: [1, 2, 3] (original array remains unchanged)
-console.log(newArray); // Output: [1, 2, 3, 4, 5] (new array with additional elements)
+async function fetchUserData() {
+  try {
+    const response = await fetch("https://api.example.com/user");
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
 ```
 
-#### Example: Spread with Objects
+### Callback Functions in JavaScript
+
+A **callback function** is a function passed as an argument to another function. It is then **called back** (executed) inside that function to complete a task or produce a result. Callbacks are commonly used for asynchronous operations, like API requests, timers, or event listeners.
+
+### Basic Example
+
+Here’s a simple example where a callback is used to display a message after a delay:
 
 ```javascript
-const originalObject = { a: 1, b: 2 };
-const newObject = { ...originalObject, c: 3 };
-
-console.log(originalObject); // Output: { a: 1, b: 2 } (original object remains unchanged)
-console.log(newObject); // Output: { a: 1, b: 2, c: 3 } (new object with additional property)
-```
-
-In both cases, `originalArray` and `originalObject` are left unchanged, and any modifications are applied to `newArray` and `newObject` only.
-
-### Rest Parameter (`...`)
-
-The **rest** parameter allows us to collect multiple elements into an array or remaining properties into an object. Using rest also does not modify the original data; it simply gathers values into a new array or object.
-
-#### Example: Rest with Arrays
-
-```javascript
-function collectArgs(...args) {
-  console.log(args); // Output: [1, 2, 3, 4]
+function greet(name, callback) {
+  console.log(`Hello, ${name}!`);
+  callback();
 }
 
-collectArgs(1, 2, 3, 4); // Original arguments are gathered into a new array `args`
+function logDone() {
+  console.log("Greeting has been logged.");
+}
+
+greet("Alice", logDone); // Output: "Hello, Alice!" followed by "Greeting has been logged."
 ```
 
-#### Example: Rest with Object Destructuring
+### Asynchronous Example
+
+Callbacks are often used to handle asynchronous tasks, like fetching data from an API:
 
 ```javascript
-const person = { name: "Alice", age: 25, city: "Paris" };
-const { name, ...details } = person;
+function fetchData(callback) {
+  setTimeout(() => {
+    console.log("Data fetched!");
+    callback("Fetched data");
+  }, 1000);
+}
 
-console.log(name); // Output: Alice
-console.log(details); // Output: { age: 25, city: "Paris" }
-console.log(person); // Output: { name: "Alice", age: 25, city: "Paris" } (original object remains unchanged)
+function handleData(data) {
+  console.log("Processing:", data);
+}
+
+fetchData(handleData); // Output: "Data fetched!" then "Processing: Fetched data" after 1 second
 ```
 
 ### Key Points
 
-- **Spread** creates shallow copies and does not alter the original array or object.
-- **Rest** gathers values into a new array or object without changing the original data.
-- Both are useful in creating **immutable** patterns, where the original data remains unchanged.
+- **Asynchronous Control**: Callbacks help manage asynchronous code by specifying what to do once an operation completes.
+- **Callback Hell**: Nesting many callbacks can lead to difficult-to-read code, known as "callback hell" (or "pyramid of doom"). This is partly why promises and `async`/`await` were introduced.
 
-No, destructuring itself does not modify the original array or object. Instead, it extracts values from arrays or properties from objects and assigns them to new variables. The original array or object remains unchanged during the process of destructuring.
+### Usage
 
-### Destructuring with Arrays
+Callbacks are widely used in:
 
-Destructuring an array simply assigns values from the original array to new variables, without modifying the original array.
-
-```javascript
-const originalArray = [1, 2, 3];
-const [first, second] = originalArray;
-
-console.log(first); // Output: 1
-console.log(second); // Output: 2
-console.log(originalArray); // Output: [1, 2, 3] (original array remains unchanged)
-```
-
-Here, `first` and `second` get the values `1` and `2` from `originalArray`, but `originalArray` itself is not altered.
-
-### Destructuring with Objects
-
-Similarly, destructuring an object creates new variables for the extracted properties, without modifying the original object.
-
-```javascript
-const originalObject = { name: "Alice", age: 25 };
-const { name, age } = originalObject;
-
-console.log(name); // Output: Alice
-console.log(age); // Output: 25
-console.log(originalObject); // Output: { name: "Alice", age: 25 } (original object remains unchanged)
-```
-
-### Can You Modify the Original Array/Object Using Destructured Variables?
-
-If you assign destructured variables or properties to new variables, those variables act independently of the original array or object. However, if the destructured variable holds a **reference** to a mutable object (like an array or nested object within the original object), modifying this reference will affect the original data.
-
-#### Example: Modifying a Nested Object
-
-```javascript
-const originalObject = { name: "Alice", details: { age: 25 } };
-const { details } = originalObject;
-
-// Modifying the nested object through the destructured variable
-details.age = 30;
-
-console.log(originalObject.details.age); // Output: 30 (original nested object is affected)
-```
-
-In this case, `details` is a reference to the nested object inside `originalObject`, so modifying `details` affects `originalObject`.
-
-### Summary
-
-- **Destructuring alone** does not modify the original array or object.
-- **Directly modifying destructured variables** does not affect the original array or object.
-- **Modifying a reference to a nested object or array** within the destructured variable will affect the original object, as both references point to the same underlying data.
-
-Here's a neatly formatted markdown note comparing **Map** and **Set** in JavaScript:
-
----
-
-# JavaScript Collections: Map vs Set
-
-## Map
-
-- **Definition**: A collection of key-value pairs.
-- **Structure**: Two-dimensional (key-value pairs).
-- **Example**:
-
-  ```javascript
-  let data = new Map();
-  data.set("name", "saikrishna");
-  data.set("id", "1");
-
-  for (let item of data) {
-    console.log(item);
-  }
-  // Output:
-  // ["name", "saikrishna"]
-  // ["id", "1"]
-  ```
-
-### Map Methods
-
-| Method                | Description                                                                                       |
-| --------------------- | ------------------------------------------------------------------------------------------------- |
-| `new Map([iterable])` | Creates a new map, optionally initialized with an iterable (e.g., array of `[key, value]` pairs). |
-| `map.set(key, value)` | Stores the value by the key, returns the map itself.                                              |
-| `map.get(key)`        | Returns the value associated with the key, or `undefined` if the key does not exist.              |
-| `map.has(key)`        | Returns `true` if the key exists, otherwise `false`.                                              |
-| `map.delete(key)`     | Removes the element by the key, returns `true` if the key existed, otherwise `false`.             |
-| `map.clear()`         | Removes all elements from the map.                                                                |
-| `map.size`            | Returns the count of key-value pairs in the map.                                                  |
-
----
-
-## Set
-
-- **Definition**: A collection of unique values (no duplicates).
-- **Structure**: One-dimensional (values only).
-- **Example**:
-
-  ```javascript
-  let data = new Set();
-  data.add(1);
-  data.add("saikrishna");
-
-  for (let item of data) {
-    console.log(item);
-  }
-  // Output:
-  // 1
-  // saikrishna
-  ```
-
-### Set Methods
-
-| Method                | Description                                                                                |
-| --------------------- | ------------------------------------------------------------------------------------------ |
-| `new Set([iterable])` | Creates a new set, optionally initialized with values from an iterable (usually an array). |
-| `set.add(value)`      | Adds a value to the set, returns the set itself.                                           |
-| `set.delete(value)`   | Removes the value from the set, returns `true` if the value existed, otherwise `false`.    |
-| `set.has(value)`      | Returns `true` if the value exists in the set, otherwise `false`.                          |
-| `set.clear()`         | Removes all values from the set.                                                           |
-| `set.size`            | Returns the count of values in the set.                                                    |
-
----
-
-## Key Differences
-
-- **Map** is a collection of **key-value pairs**, while **Set** is a collection of **unique values**.
-- **Map** is **two-dimensional** (keys and values), whereas **Set** is **one-dimensional** (values only).
-- Both `Map` and `Set` preserve the insertion order of elements.
+- **Event handling**: `button.addEventListener('click', callback)`.
+- **APIs**: Passing a callback to handle the result of an API request.
+- **Timers**: `setTimeout(callback, delay)` or `setInterval(callback, interval)`.

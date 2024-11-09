@@ -150,6 +150,16 @@ function concatExample(arr1, arr2) {
   console.log("After concat:", arr3);
 }
 concatExample([1, 2, 3], [4, 5, 6]);
+const fruits = ["apple", "banana", "cherry", "banana"];
+
+// Finding the index of 'banana'
+console.log(fruits.indexOf("banana")); // Output: 1 (first occurrence)
+
+// Finding the index of 'banana' starting from index 2
+console.log(fruits.indexOf("banana", 2)); // Output: 3
+
+// If the element does not exist in the array
+console.log(fruits.indexOf("grape")); // Output: -1
 
 // forEach()
 function forEachExample(arr) {

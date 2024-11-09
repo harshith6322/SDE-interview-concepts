@@ -43,7 +43,7 @@
 
 ---------Devops-------------------
 1.Docker ✔️
-2.ci/cd 
+2.ci/cd  ✔️
 3.aws 
   -iam,ec2,lamdafun,s3,cdn,autoscaling,
   -vpc

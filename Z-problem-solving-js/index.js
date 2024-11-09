@@ -100,3 +100,15 @@ function data() {
 
 data();
 console.log(a);
+
+async function fetchData() {
+  throw new Error("Data not found");
+}
+async function getData() {
+  try {
+    await fetchData();
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+getData();

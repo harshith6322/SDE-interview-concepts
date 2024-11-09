@@ -42,55 +42,7 @@ const fetchUserData = async () => {
 document.querySelector("#fetchButton").addEventListener("click", fetchUserData);
 ```
 
-### Explanation:
-
-1. **Variable to Store Controller**:
-
-   - `let controller;` keeps track of the current `AbortController`.
-
-2. **Abort Previous Request**:
-   - Before making a new request, we check if there's an existing `controller`. If it exists, we call `controller.abort()` to cancel any ongoing request.
-3. **Create New `AbortController`**:
-   - A new `AbortController` is created for the latest request, ensuring that only the most recent one is in progress.
-4. **Pass the `signal` to `fetch`**:
-
-   - The `signal` from the new controller is passed to the `fetch` call.
-
-5. **Handle the Abort**:
-   - If the previous request is aborted, it will be caught in the `catch` block, logging `'Previous request aborted'`.
-
-### Example HTML for the Button:
-
-Include a button in your HTML that will trigger the `fetchUserData` function when clicked:
-
-```html
-<button id="fetchButton">Fetch User Data</button>
-```
-
-### How It Works:
-
-- When the user clicks the "Fetch User Data" button, `fetchUserData` is triggered.
-- If the user clicks the button again **before the current request completes**, the existing request is aborted and a new one is initiated.
-- This way, only the **latest** request is processed, and all previous requests are canceled.
-
-### Output Example:
-
-If the user clicks the button multiple times quickly, the console might log something like:
-
-```
-Fetching user data...
-Previous request aborted
-Fetching user data...
-Previous request aborted
-Fetching user data...
-User data: [ ... ]
-```
-
-This output shows that the previous requests were aborted, ensuring only the final request fetched the user data successfully.
-
-This approach is especially useful for situations like **search input fields**, **autocomplete suggestions**, or **any action** where multiple quick user interactions might otherwise overwhelm the server with duplicate requests.
-
-In JavaScript, **event bubbling** and **event capturing** (also known as **event trickling**) are two phases of the **event propagation** process when an event occurs on a nested element. Understanding these phases is crucial when you work with **event listeners** and need precise control over how events are handled in nested elements.
+----------------------------------### event bubbling and event
 
 ### Event Propagation Phases:
 
@@ -126,6 +78,22 @@ In **event bubbling**, the event moves **upwards** from the target element to it
 
   document.getElementById("button").addEventListener("click", () => {
     console.log("Button clicked");
+  });
+</script>
+
+//real usecase of event bubbling
+
+<ul id="itemList">
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+
+<script>
+  const itemList = document.getElementById("itemList");
+
+  itemList.addEventListener("click", (event) => {
+    alert(`You clicked on ${event.target.textContent}`);
   });
 </script>
 ```
@@ -186,6 +154,31 @@ To change the default behavior and use **event capturing** instead of **bubbling
     },
     true
   );
+</script>
+
+<div id="overlay">
+  <div id="modal">
+    <button id="closeBtn">Close</button>
+  </div>
+</div>
+
+<script>
+  const overlay = document.getElementById("overlay");
+  const modal = document.getElementById("modal");
+
+  overlay.addEventListener(
+    "click",
+    () => {
+      console.log("Overlay clicked, closing modal");
+      overlay.style.display = "none";
+    },
+    true
+  ); // Event capturing enabled
+
+  modal.addEventListener("click", (event) => {
+    console.log("Modal clicked, preventing close");
+    event.stopPropagation(); // Prevents bubbling to overlay
+  });
 </script>
 ```
 
