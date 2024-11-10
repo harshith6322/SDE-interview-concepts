@@ -36,6 +36,7 @@
 
 8. **What are media queries, and how are they used in responsive design?**
    Media queries apply styles based on screen size or device type. Example:
+
    ```css
    @media (max-width: 600px) {
      body {
@@ -43,8 +44,6 @@
      }
    }
    ```
-
-````
 
 9. **What are the differences between `em`, `rem`, `px`, `vw`, and `vh` units in CSS?**
 
@@ -161,6 +160,3 @@
     - Minify CSS, use critical CSS inlining, reduce selectors, avoid `*` selectors, and optimize animations.
 
 ---
-
-
-````

@@ -1,5 +1,3 @@
-Here are some **CSS interview prep questions** commonly asked in SDE (Software Development Engineer) roles. These questions cover a range of topics from basic to advanced CSS concepts:
-
 ### **Basic CSS Questions**:
 
 1. **What is the CSS Box Model?**

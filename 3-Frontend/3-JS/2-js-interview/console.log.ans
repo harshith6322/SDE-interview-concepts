@@ -1,7 +1,7 @@
 + will always convert to both string ""{
    - String Operand: If one operand is a string, both operands are converted to strings and concatenated.
     - Number Operand: If both operands are numbers, numeric addition is performed.
-    - Special Cases: Arrays and objects are converted to strings in specific ways that affect concatenation results.
+    - Special Cases: Arrays and objects are converted to strings in specific ways that affect concatenation results. toString() is used 
 }
 - will always converted both into number 1 {
   - Numeric Conversion: Both operands are converted to numbers before performing the subtraction.

@@ -233,6 +233,20 @@ Person.prototype.greet = function () {
 
 let john = new Person("John");
 john.greet(); // Output: Hello, my name is John
+
+//using class
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  greet() {
+    console.log("Hello, my name is " + this.name);
+  }
+}
+
+let john = new Person("John");
+john.greet(); // Output: Hello, my name is John
 ```
 
 - The method `greet()` is defined on the `Person.prototype`, and all objects created using `Person` inherit this method.

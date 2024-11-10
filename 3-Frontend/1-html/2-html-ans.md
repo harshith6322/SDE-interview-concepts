@@ -25,7 +25,7 @@ An HTML element is defined by a start tag, some content, and an end tag:
 
 The HTML element includes everything from the start tag to the end tag.
 
-> **Note**: Some HTML elements have no content (like the `<br>` element). These elements are called **empty elements** and do not have an end tag.
+> **Note**: Some HTML elements have no content (like the `<br> and <hr>` element). These elements are called **empty elements** and do not have an end tag.
 
 ### **_HTML Attributes_**
 

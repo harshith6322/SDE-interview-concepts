@@ -75,5 +75,3 @@ The OS supports microservices and cloud computing by managing containers, virtua
 ### **27. Containers and Kubernetes:**
 
 The OS manages containers, providing isolation and resource management, while Kubernetes orchestrates container deployment, scaling, and management.
-
-These answers provide a quick and effective way to respond to OS-related interview questions. Let me know if you'd like to dive deeper into any of these topics or practice more with mock questions!
