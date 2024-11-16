@@ -53,7 +53,14 @@ Let’s go over each piece.
     push:
       branches:
         - main
+
+        on:
+          pull_request:
+            branches:
+             - master
   ```
+
+````
 
 #### c. **jobs**: What Tasks to Run
 
@@ -65,9 +72,9 @@ Let’s go over each piece.
 - This tells GitHub Actions which system to use to run the job (like Ubuntu or Windows).
 - Here, `ubuntu-latest` means it’ll run on the latest version of Ubuntu.
 
-  ```yaml
+```yaml
   runs-on: ubuntu-latest
-  ```
+````
 
 ---
 
@@ -190,11 +197,14 @@ jobs:
 2. Example: Triggering on Push and Pull Requests
    To trigger the workflow on both push and pull_request events for the main branch:
 
-yaml
+```yaml
 Copy code
 on:
-push:
-branches: - main
-pull_request:
-branches: - main
+ push:
+  branches:
+  - main
+ pull_request:
+  branches:
+  - main
 This runs the workflow for both code pushes to main and any pull requests targeting main.
+```

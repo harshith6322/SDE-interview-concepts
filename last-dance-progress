@@ -4,7 +4,7 @@
 
 ---------Front-End-----------------
 1.HTML ✔️
-2.css ✔️  flex,grid ❌
+2.css ✔️  flex,grid ✔️
 3.sass ✔️
 4.tailwind.css ✔️ 
 5. js
@@ -12,27 +12,28 @@
   - oops   ✔️
   -methods ✔️
   -es6     ✔️
-
+  -other   ✔️
+5.js - Babel,webpack,vite,eslint
 6.React.js
-7.typescript
+7.typescript 🟠
 8.next.js
 
 ---------Backend-------------------
-1.node
-2.express.js
-3.hono.js---severless
+1.node                 ✔️
+2.express.js           ✔️
+3.hono.js---severless  ❌
 4.lib
-  - jwt   ✔️
-  - bcript.js ✔️ 
-  - rate limiting ✔️
-  - env,cors,cookies ✔️
+  - jwt                ✔️
+  - bcript.js          ✔️ 
+  - rate limiting      ✔️
+  - env,cors,cookies   ✔️
 
 5.database connections ✔️ 
 
 
 5. api
- - Rest api    ✔️
- - websockets
+ - Rest api         ✔️
+ - websockets       ❌
 
 -----------tools------------------
 1.git--git-hub  ✔️
@@ -42,19 +43,20 @@
 5.vs code       ✔️
 
 ---------Devops-------------------
-1.Docker ✔️
-2.ci/cd  ✔️
-3.aws 
-  -iam,ec2,lamdafun,s3,cdn,autoscaling,
-  -vpc
+1.Docker        ✔️
+2.ci/cd jenkins ✔️
+3.aws           ✔️                                
+  -iam,ec2,lamdafun,s3,cdn,autoscaling, 
+  -vpc,certbot 
 4.k8s
 5.monitoring -promethues,grafna,newreclik
-6.git,git-hub ✔️
-7.bash-cmm ✔️
+6.git,git-hub   ✔️
+7.bash-cmm      ✔️
 
 
 
 ---------Other-------------------
+
 1. personal-portfolio-website  ------------✔️
 2. multiple-resumes -----------------------✔️ 
 3. all-job-profile-set --------------------✔️
