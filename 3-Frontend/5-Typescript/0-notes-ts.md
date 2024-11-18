@@ -25,6 +25,11 @@
    tsc --init
    ```
    This creates a `tsconfig.json` file, which you can use to configure TypeScript.
+   3.How to compile code:
+
+```bash
+tsc -watch or -w
+```
 
 ---
 
@@ -38,6 +43,10 @@ In TypeScript, you specify the type of variables, parameters, and return values.
 let isDone: boolean = true;
 let count: number = 42;
 let name: string = "TypeScript";
+let bigint: bigint = 122399993n;
+let null:null = null;
+let undifined:undefined ;
+let symbol: symbol = Symbol();
 ```
 
 ### Types in TypeScript
@@ -317,5 +326,3 @@ Modules help organize code and can be imported/exported between files.
 TypeScript is a powerful language that helps to ensure code quality and robustness, especially in large applications. Practice each of these concepts individually, build small projects, and use TypeScript’s compiler options to explore its additional features and strictness levels.
 
 ---
-
-Feel free to ask questions or request clarifications on any part of this outline!
