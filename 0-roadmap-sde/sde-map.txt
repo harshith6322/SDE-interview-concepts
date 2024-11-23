@@ -58,11 +58,11 @@ other:redis,elasticserch
 ------------7.Tools--------------
 
 
-1.git/git hub ✔️
-2.vs code   ✔️
-3.chrome dev   ✔️
-4.cmd ✔️
-5.postmanapi ✔️
+1.git/git hub 
+2.vs code   
+3.chrome dev   
+4.cmd 
+5.postmanapi 
 6.testing-tools : 1.jest/vites , 2. cypress e2e 
 
 
