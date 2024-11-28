@@ -1,0 +1,364 @@
+-----------------------------------k8s--------------
+
+
+-----------------What is kubernetes-----------
+
+
+Kubernetes (popularly known as k8s) is a container orchestration engine, which as the name  suggests lets you create, delete, and update containers
+
+
+This is useful when:
+ - You have your docker images in the docker registry and want to deploy it in a cloud native fashion
+ - You want to not worry about patching, crashes. You want the system to auto heal
+ - You want to autoscale with some simple constructs
+ - You want to observe your complete system in a simple dashboard
+ 
+architecture of k8s:
+
+  k8s:
+     - clusters : it has multiple nodes
+     - nodes : master node, worker node
+     - pods
+     - multi container of docker
+
+
+Pods
+A pod is the smallest and simplest unit in the Kubernetes object model that you can create or deploy == ec2 machine or an virtual machine
+
+
+Nodes:
+In kubernetes, you can create and connect various machines together, all of which are running kubernetes. Every machine here is known as a node
+There are two types of nodes
+
+Master Node (Control pane) - The node that takes care of deploying the containers/healing them/listening to the developer to understand what to deploy
+ 
+    it has:
+       - API Server
+       - etcd
+       - kube-scehduler
+       - kube-controller-manager
+ 
+
+
+
+Worker Nodes - The nodes that actually run your Backend/frontend
+ 
+it has:
+   - kubelet - An agent that runs on each node in the cluster. It makes sure that containers are running in a Pod.
+- kube-proxy - The kube-proxy is a network proxy that runs on each node in a Kubernetes cluster. It is responsible for you being able to talk to a pod
+- Container runtime - In a Kubernetes worker node, the container runtime is the software responsible for running containers.
+
+
+
+
+
+--------------------------------------------------------------Creating a k8s cluster-------------------------
+ 
+1.Locally (Make sure you have docker):
+minukube
+kind - https://kind.sigs.k8s.io/docs/user/quick-start/
+
+2.On cloud:
+GKE
+AWS K8s
+vultr
+
+3.Using kind:
+Install kind - https://kind.sigs.k8s.io/docs/user/quick-start/#installation
+
+
+---------Single node setup: using kind----------
+
+1.Create a 1 node cluster
+ - kind create cluster --name local
+
+2.Check the docker containers you have running
+ - docker ps
+
+3.Delete the cluster
+ - kind delete cluster -n local
+
+
+
+--------------Multi node setup--------------
+
+1.Create a clusters.yml file:
+{
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+- role: worker
+- role: worker
+}
+
+2.Create the node setup:
+ - kind create cluster --config clusters.yml --name local
+
+3.Check docker containers:
+- docker ps
+
+4. All of your authorization credentials are stored by kind in ~/.kube/config 
+   - cat ~/.kube/config = to get an key so we can send restapi req to master node
+
+5.kind delete cluster -n local
+
+
+--------------kubectl--------------------------------
+
+1.kubectl is a command-line tool for interacting with Kubernetes clusters. It provides a way to communicate with the Kubernetes API server and manage Kubernetes resources.
+
+ - Install kubectl === https://kubernetes.io/docs/tasks/tools/#kubectl
+
+ - it an tool that uses the RestApi to talk with master node in cluster
+
+
+2.Ensure kubectl works fine
+  - kubectl get nodes
+  - kubectl get pods
+
+ 
+3.If you want to see the exact HTTP request that goes out to the API server, you can add --v=8 flag
+  - kubectl get nodes --v=8
+
+
+--------------Starting a pod using k8s-------------
+
+1.Start a pod
+   - kubectl run nginx --image=nginx --port=80
+
+2.Check the status of the pod
+   - kubectl get pods
+
+3.Check the logs 
+   - kubectl logs nginx
+
+4.Stop the pod by running
+   - kubectl delete pod nginx
+
+5.Check the current state of pods
+   - kubectl get pods
+
+
+
+-------------Kubernetes manifest--------------------
+
+1. A manifest defines the desired state for Kubernetes resources, such as Pods, Deployments, Services, etc., in a declarative manner. 
+ 
+2. Manifest file ===
+
+---------{
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+
+}------------
+
+
+3.Applying the manifest
+ - kubectl apply -f manifest.yml
+
+4.Delete the pod
+  - kubectl delete pod nginx
+
+
+
+
+--------------------Create a replicaset--------------------------
+
+1.Let’s not worry about deployments, lets just create a replicaset that starts 3 pods
+
+2.Apply the manifest
+  - kubectl apply -f rs.yml
+
+3.Get the rs details
+  - kubectl get rs
+
+NAME               DESIRED   CURRENT   READY   AGE
+nginx-replicaset   3         3         3       23s
+
+4.Check the pods
+  - kubectl get pods
+
+NAME                     READY   STATUS    RESTARTS   AGE
+nginx-replicaset-7zp2v   1/1     Running   0          35s
+nginx-replicaset-q264f   1/1     Running   0          35s
+nginx-replicaset-vj42z   1/1     Running   0          35s
+
+5.Try deleting a pod and check if it self heals
+  - kubectl delete pod nginx-replicaset-7zp2v
+  - kubectl get pods
+
+6.Try adding a pod with the app=nginx
+  - kubectl run nginx-pod --image=nginx --labels="app=nginx"
+
+
+7.Delete the replicaset
+  - kubectl delete rs nginx-deployment-576c6b7b6
+
+------------------Deployment------------------------
+
+
+1. A Deployment in Kubernetes is a higher-level abstraction that manages a set of Pods and provides declarative updates to them. It offers features like scaling, rolling updates, and rollback capabilities, making it easier to manage the lifecycle of applications.
+
+
+2. pods vs deployment
+
+  - Pod: A Pod is the smallest and simplest Kubernetes object. It represents a single instance of a running process in your cluster, typically containing one or more containers.
+
+  - Deployment: A Deployment is a higher-level controller that manages a set of identical Pods. It ensures the desired number of Pods are running and provides declarative updates to the Pods it manages.
+
+
+----------Apply the deployment-------
+
+1. kubectl apply -f deployment.yml
+
+   - kubectl get deployment
+
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployment   3/3     3            3           18s
+
+
+2.Get the rs
+  - kubectl get rs
+NAME                         DESIRED   CURRENT   READY   AGE
+nginx-deployment-576c6b7b6   3         3         3       34s
+
+
+3.Get the pod
+  - kubectl get pod
+NAME                               READY   STATUS    RESTARTS   AGE
+nginx-deployment-576c6b7b6-b6kgk   1/1     Running   0          46s
+nginx-deployment-576c6b7b6-m8ttl   1/1     Running   0          46s
+nginx-deployment-576c6b7b6-n9cx4   1/1     Running   0          46s
+
+
+4.Try deleting a pod
+  - kubectl delete pod nginx-deployment-576c6b7b6-b6kgk
+
+5.Rollbacks
+  - Check the history of deployment
+     -kubectl rollout history deployment/nginx-deployment
+
+6.Undo the last deployment
+  - kubectl rollout undo deployment/nginx-deployment
+
+
+------------------------------How to expose the app? && services--------------------------
+
+we have 3 type of services
+1.nodeport
+2.load balancers
+3.cluster ip
+
+create an services yml file and apply it 
+
+1.create an new kind cluster yml to port forwarding the docker containers to your mac or windows machines
+2.re-apply deployments 
+3.create an services yml file and apply it
+  - kubectl apply -f servic.yml 
+
+{
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30007 # This port can be any valid port within the NodePort range
+  type: Loadbalancer
+  # type: can be NodePort
+
+}
+
+
+
+---------------------------------------------------------------part-2---------------------------------------
+What we’re doing today
+Namespaces
+Ingress
+Ingress Controller
+nginx
+traefik
+ConfigMaps
+Secrets
+
+
+
+
+----------namespaces------
+1.Namespaces
+In Kubernetes, a namespace is a way to divide cluster resources between multiple users/teams. Namespaces are intended for use in environments with many users spread across multiple teams, or projects, or environments like development, staging, and production.
+When you do 
+
+kubectl get pods --all-namespaces
+
+it gets you the pods in the default namespace
+
+1.Create a new namespace
+kubectl create namespace backend-team
+
+2.Get all the namespaces
+kubectl get namespaces
+
+3.Get all pods in the namespace
+kubectl get pods -n my-namespace
+
+4.Create the manifest for a deployment in the namespace
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: backend-team
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+
+Apply the manifest
+kubectl apply -f deployment-ns.yml
+
+5.Get the deployments in the namespace
+kubectl get deployment -n backend-team
+
+6.Get the pods in the namespace
+kubectl get pods -n backend-team
+
+7.Set the default context to be the namespace
+kubectl config set-context --current --namespace=backend-team
+
+8.Try seeing the pods now
+kubectl get pods
+
+9.Revert back the kubectl config
+kubectl config set-context --current --namespace=default
+
+
+
+
+

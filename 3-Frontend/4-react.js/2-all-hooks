@@ -233,7 +233,7 @@ const MeasureDiv = () => {
     <>
       <div
         ref={divRef}
-        style={{ width: 200, height: 200, background: "lightblue" }}
+        style={{ width: 400, height: 200, background: "lightblue" }}
       >
         Measure me!
       </div>
