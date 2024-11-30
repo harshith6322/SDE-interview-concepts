@@ -4,8 +4,8 @@ console.log({} + 1);//[object obect]1
 console.log([] - 1);//0 -1 = -1
 console.log({} - 1);//nan
 console.log([1] + 1);//"1" + 1 = "11"
-console.log({key: "key"} + 1); //nan
 console.log([5] - 1); // [5] to "5" to 5 -1 =4
+console.log({key: "key"} + 1); //"[obj,obj]1"
 console.log({key: "key"} - 1);//nan
 console.log([] == 1);//0==1 = false
 console.log({} == 1);//false
@@ -23,6 +23,8 @@ console.log( [1] + []); // "1" + "" = "1"
 console.log({} + {}); // [object Object][object Object]
 console.log([] + []);// "" + "" = ""
 console.log({} + [])//[object object] or 0
+console.log([] - []);// "" - "" = 0-0=0
+console.log({} - [])//nan
 console.log(5 == "5"); //"5" == "5" = t
 console.log(5 === "5");//flase
 console.log("10" - -"5"); // -"5" to -5 = 10 - (-5) = 10+5 =15

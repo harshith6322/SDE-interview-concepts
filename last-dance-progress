@@ -13,7 +13,7 @@
   -methods ✔️
   -es6     ✔️
   -other   ✔️
-6.React.js
+6.React.js  ✔️
 7.typescript ✔️
 8.next.js
 
@@ -48,7 +48,7 @@
 2.ci/cd jenkins ✔️
 3.aws           ✔️                                
   -iam,ec2,lamdafun,s3,cdn,autoscaling, 
-  -vpc,certbot 
+  -vpc,certbot ✔️
 4.k8s
 5.monitoring -promethues,grafna,newreclik
 6.git,git-hub   ✔️
