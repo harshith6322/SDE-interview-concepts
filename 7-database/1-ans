@@ -1,0 +1,464 @@
+Here are the answers to the **60 MongoDB and Mongoose interview questions**:
+
+---
+
+### **Basic MongoDB Questions**
+
+1. **What is MongoDB, and how does it differ from relational databases?**  
+   MongoDB is a NoSQL, document-oriented database that stores data in flexible, JSON-like documents. Unlike relational databases, it doesn't use tables or rows but collections and documents, allowing for schema-less design.
+
+2. **What is a document in MongoDB, and how is it stored?**  
+   A document is a record in MongoDB stored as a BSON (Binary JSON) object, enabling flexibility and better performance.
+
+3. **Define collections and databases in MongoDB.**
+
+   - **Database**: A container for collections, like a database in RDBMS.
+   - **Collection**: A group of documents, similar to a table in RDBMS.
+
+4. **What are the advantages of using MongoDB over traditional RDBMS?**
+
+   - Flexible schema
+   - High scalability (horizontal scaling)
+   - Supports complex queries and aggregations
+   - Better suited for big data and real-time analytics
+
+5. **Explain BSON and how it is used in MongoDB.**  
+   BSON is a binary representation of JSON-like documents. It supports additional data types (e.g., `Date`) and is optimized for traversal and storage.
+
+6. **What is the difference between `find()` and `findOne()`?**
+
+   - `find()`: Retrieves multiple documents matching a query.
+   - `findOne()`: Returns the first document matching a query.
+
+7. **How do you insert a document into a MongoDB collection?**  
+   Use the `insertOne()` or `insertMany()` methods:
+
+   ```js
+   db.collection.insertOne({ name: "John", age: 30 });
+   ```
+
+8. **What are the primary MongoDB data types?**  
+   String, Number, Boolean, Array, Object, Date, Null, ObjectId, and Binary.
+
+9. **Explain the purpose of `_id` in MongoDB documents.**  
+   `_id` is a unique identifier for each document in a collection. By default, MongoDB generates an ObjectId for `_id`.
+
+10. **How do you update a document in MongoDB?**  
+    Use `updateOne()` or `updateMany()`:
+
+    ```js
+    db.collection.updateOne({ name: "John" }, { $set: { age: 35 } });
+    ```
+
+11. **What is the difference between `updateOne` and `updateMany`?**
+
+    - `updateOne`: Updates the first matching document.
+    - `updateMany`: Updates all matching documents.
+
+12. **How do you delete documents in MongoDB? Explain `deleteOne` and `deleteMany`.**
+
+    - `deleteOne`: Removes the first matching document.
+    - `deleteMany`: Removes all matching documents.  
+      Example:
+
+    ```js
+    db.collection.deleteOne({ name: "John" });
+    ```
+
+13. **What is the use of the `upsert` option in MongoDB?**  
+    If no matching document is found, `upsert` creates a new document:
+
+    ```js
+    db.collection.updateOne(
+      { name: "John" },
+      { $set: { age: 35 } },
+      { upsert: true }
+    );
+    ```
+
+14. **Explain the concept of sharding in MongoDB.**  
+    Sharding is horizontal partitioning, distributing data across multiple servers to handle large datasets and high throughput.
+
+15. **What is replication in MongoDB, and how does it work?**  
+    Replication ensures data redundancy and high availability by maintaining multiple copies of data across servers (replica sets).
+
+---
+
+### **Intermediate MongoDB Questions**
+
+16. **How does indexing work in MongoDB? What are its types?**  
+    Indexing improves query performance. Types:
+
+    - Single-field
+    - Compound
+    - Multikey
+    - Text
+    - TTL
+    - Geospatial
+
+17. **What is a capped collection in MongoDB?**  
+    A fixed-size collection that automatically overwrites the oldest entries when full.
+
+18. **How can you achieve schema validation in MongoDB?**  
+    By using the `$jsonSchema` validator in collection options:
+
+    ```js
+    db.createCollection("users", {
+      validator: { $jsonSchema: { required: ["name", "age"] } },
+    });
+    ```
+
+19. **Explain the Aggregation Framework in MongoDB.**  
+    A pipeline-based system for processing data in stages like `$match`, `$group`, and `$sort`.
+
+20. **What is the `$lookup` operator, and how is it used for joins in MongoDB?**  
+    Performs left outer joins between collections:
+    ```js
+    db.orders.aggregate([
+      {
+        $lookup: {
+          from: "products",
+          localField: "productId",
+          foreignField: "_id",
+          as: "productDetails",
+        },
+      },
+    ]);
+    ```
+
+---
+
+Continuing with the answers:
+
+---
+
+### **Intermediate MongoDB Questions (Cont'd)**
+
+21. **What is the difference between `$match` and `$project` in aggregation?**
+
+    - `$match`: Filters documents based on criteria (like `WHERE` in SQL).
+    - `$project`: Specifies which fields to include or exclude and allows field transformations.
+
+22. **How do you handle duplicate data in MongoDB?**  
+    Use the `unique` index constraint or the Aggregation Framework to detect duplicates:
+
+    ```js
+    db.collection.createIndex({ field: 1 }, { unique: true });
+    ```
+
+23. **How can you ensure data integrity in MongoDB?**
+
+    - Use schema validation with `$jsonSchema`.
+    - Implement transactions for multi-document consistency.
+    - Use `unique` indexes to prevent duplicates.
+
+24. **What is a TTL index, and how can you use it?**  
+    TTL (Time-to-Live) indexes automatically delete documents after a specified time.  
+    Example:
+
+    ```js
+    db.collection.createIndex({ createdAt: 1 }, { expireAfterSeconds: 3600 });
+    ```
+
+25. **Explain the use of the `$group` stage in the Aggregation Framework.**  
+    Groups documents by a specified key and performs aggregations like `sum`, `avg`, etc.:
+
+    ```js
+    db.sales.aggregate([
+      { $group: { _id: "$category", totalSales: { $sum: "$amount" } } },
+    ]);
+    ```
+
+26. **What is the purpose of `$facet` in aggregation pipelines?**  
+    Runs multiple aggregation pipelines in parallel and combines results:
+
+    ```js
+    db.collection.aggregate([
+      {
+        $facet: {
+          categories: [{ $group: { _id: "$category" } }],
+          priceStats: [{ $group: { _id: null, avgPrice: { $avg: "$price" } } }],
+        },
+      },
+    ]);
+    ```
+
+27. **How does the WiredTiger storage engine work in MongoDB?**  
+    WiredTiger uses compression and in-memory caching for efficient storage and retrieval. It supports document-level locking for concurrency.
+
+28. **What are MongoDB transactions, and when should you use them?**  
+    Transactions ensure ACID properties for operations spanning multiple documents or collections. Use them for operations requiring consistency:
+
+    ```js
+    const session = db.startSession();
+    session.startTransaction();
+    try {
+      db.collection1.insertOne({ ... }, { session });
+      db.collection2.updateOne({ ... }, { $set: { ... } }, { session });
+      session.commitTransaction();
+    } catch (error) {
+      session.abortTransaction();
+    } finally {
+      session.endSession();
+    }
+    ```
+
+29. **What are the limitations of MongoDB transactions?**
+
+    - Slower performance compared to single-document operations.
+    - Supported only on replica sets.
+    - Increased memory usage.
+
+30. **What is a replica set, and why is it important in MongoDB?**  
+    A replica set is a group of MongoDB servers maintaining identical data. It ensures high availability and failover capabilities.
+
+---
+
+### **Advanced MongoDB Questions**
+
+31. **Explain the ACID properties in MongoDB.**
+
+    - **Atomicity**: Transactions ensure all operations succeed or fail as a whole.
+    - **Consistency**: Transactions keep data consistent.
+    - **Isolation**: Operations within a transaction don’t interfere with others.
+    - **Durability**: Committed transactions are saved even in the event of a crash.
+
+32. **How do you monitor the performance of MongoDB?**  
+    Use tools like:
+
+    - `mongotop` and `mongostat` for real-time stats.
+    - Atlas Performance Advisor for hosted databases.
+    - Profiling and logs (`db.setProfilingLevel()`).
+
+33. **How can you optimize a query in MongoDB?**
+
+    - Use indexes effectively.
+    - Avoid `$regex` on large datasets.
+    - Use projections to limit fields.
+    - Analyze with `explain()`.
+
+34. **What are compound indexes? How are they used?**  
+    Compound indexes combine multiple fields in a single index:
+
+    ```js
+    db.collection.createIndex({ firstName: 1, lastName: 1 });
+    ```
+
+35. **Explain the difference between horizontal and vertical scaling in MongoDB.**
+
+    - **Horizontal scaling**: Distributing data across multiple servers (sharding).
+    - **Vertical scaling**: Increasing resources (CPU, RAM) on a single server.
+
+36. **What is the difference between embedded documents and referenced documents?**
+
+    - **Embedded documents**: Store related data within the same document.
+    - **Referenced documents**: Use references (`ObjectId`) to relate data in separate documents.
+
+37. **How does MongoDB handle concurrency?**  
+    MongoDB uses a locking system:
+
+    - Document-level locks for WiredTiger.
+    - Transactions ensure ACID compliance for multi-document operations.
+
+38. **What is the purpose of MongoDB's `$unwind` operator?**  
+    Deconstructs an array field in documents into separate documents:
+
+    ```js
+    db.collection.aggregate([{ $unwind: "$tags" }]);
+    ```
+
+39. **How do you perform text search in MongoDB?**  
+    Use text indexes:
+
+    ```js
+    db.collection.createIndex({ content: "text" });
+    db.collection.find({ $text: { $search: "keyword" } });
+    ```
+
+40. **What are database profiling tools available in MongoDB?**
+
+    - **Database Profiler**: Captures query performance.
+    - **Atlas Performance Advisor**: Provides optimization suggestions.
+
+41. **What is the oplog in MongoDB?**  
+    A special capped collection that records changes in the database, used for replication.
+
+42. **How does MongoDB Atlas differ from self-hosted MongoDB?**  
+    Atlas is a fully managed cloud service with features like automatic scaling, backups, and integrated monitoring.
+
+43. **How can you back up a MongoDB database?**
+
+    - Use `mongodump` for manual backups.
+    - Use Atlas or custom scripts for automated backups.
+
+44. **Explain the `$merge` stage in aggregation pipelines.**  
+    Merges aggregation results into an existing collection or creates a new one:
+
+    ```js
+    db.collection.aggregate([{ $merge: { into: "outputCollection" } }]);
+    ```
+
+45. **What are wildcard indexes, and when are they used?**  
+    Wildcard indexes index all fields in subdocuments for dynamic schemas:
+    ```js
+    db.collection.createIndex({ "$**": 1 });
+    ```
+
+---
+
+**Mongoose Questions** will continue in the next response! Let me know if you’d like the answers. 😊
+Continuing with **Mongoose Questions:**
+
+---
+
+### **Basic Mongoose Questions**
+
+46. **What is Mongoose, and why is it used in Node.js?**  
+    Mongoose is an ODM (Object Data Modeling) library for MongoDB in Node.js. It provides schema-based modeling, validation, and middleware for MongoDB operations.
+
+47. **How do you define a schema in Mongoose?**  
+    A schema is defined using the `mongoose.Schema` class:
+
+    ```js
+    const mongoose = require("mongoose");
+    const userSchema = new mongoose.Schema({
+      name: String,
+      age: Number,
+    });
+    ```
+
+48. **What is the difference between `model` and `schema` in Mongoose?**
+
+    - **Schema**: Blueprint of a MongoDB document defining structure, default values, and validation.
+    - **Model**: A constructor compiled from a schema used to interact with documents in the database.
+
+49. **Explain how to define and use virtual properties in Mongoose.**  
+    Virtual properties are fields not stored in the database but computed from existing fields:
+
+    ```js
+    userSchema.virtual("fullName").get(function () {
+      return `${this.firstName} ${this.lastName}`;
+    });
+    ```
+
+50. **How do you perform validation in Mongoose?**  
+    Define validation rules in the schema:
+
+    ```js
+    const userSchema = new mongoose.Schema({
+      name: { type: String, required: true },
+      age: { type: Number, min: 18 },
+    });
+    ```
+
+51. **What are Mongoose middlewares? Give an example.**  
+    Functions executed during document lifecycle events (e.g., `save`, `remove`):
+
+    ```js
+    userSchema.pre("save", function (next) {
+      this.name = this.name.trim();
+      next();
+    });
+    ```
+
+52. **How do you create a relationship between collections in Mongoose?**  
+    Use `ObjectId` and the `ref` property:
+
+    ```js
+    const postSchema = new mongoose.Schema({
+      title: String,
+      author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    });
+    ```
+
+53. **Explain the `populate()` method in Mongoose.**  
+    Fetches referenced documents in relationships:
+
+    ```js
+    Post.find()
+      .populate("author")
+      .exec((err, posts) => console.log(posts));
+    ```
+
+54. **What is the purpose of the `toJSON` and `toObject` methods in Mongoose?**  
+    These methods modify how documents are serialized to JSON or plain objects, often used with transformations like hiding fields:
+
+    ```js
+    userSchema.set("toJSON", { virtuals: true });
+    ```
+
+55. **How do you set default values in Mongoose schemas?**  
+    Use the `default` property in the schema definition:
+    ```js
+    const userSchema = new mongoose.Schema({
+      isActive: { type: Boolean, default: true },
+    });
+    ```
+
+---
+
+### **Advanced Mongoose Questions**
+
+56. **What is the difference between `pre` and `post` middleware in Mongoose?**
+
+    - **`pre` middleware**: Executes before an event (e.g., `save`, `find`).
+    - **`post` middleware**: Executes after an event.
+
+    ```js
+    userSchema.pre("save", function (next) {
+      console.log("Before saving...");
+      next();
+    });
+    userSchema.post("save", function (doc) {
+      console.log("After saving:", doc);
+    });
+    ```
+
+57. **How do you implement a transaction in Mongoose?**  
+    Transactions ensure atomic operations across collections:
+
+    ```js
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    try {
+      await User.create([{ name: "John" }], { session });
+      await Order.create([{ product: "Laptop" }], { session });
+      await session.commitTransaction();
+    } catch (err) {
+      await session.abortTransaction();
+    } finally {
+      session.endSession();
+    }
+    ```
+
+58. **What are discriminators in Mongoose, and when should you use them?**  
+    Discriminators allow creating multiple models with shared schemas but different properties:
+
+    ```js
+    const baseSchema = new mongoose.Schema(
+      { name: String },
+      { discriminatorKey: "type" }
+    );
+    const BaseModel = mongoose.model("Base", baseSchema);
+    const ChildModel = BaseModel.discriminator(
+      "Child",
+      new mongoose.Schema({ age: Number })
+    );
+    ```
+
+59. **How do you define compound indexes in Mongoose?**  
+    Use the `index` method on a schema:
+
+    ```js
+    userSchema.index({ firstName: 1, lastName: 1 });
+    ```
+
+60. **Explain how Mongoose handles connection pooling.**  
+    Mongoose uses Node.js's native connection pooling. When you connect to MongoDB using Mongoose, it automatically manages a pool of connections to optimize performance. Configure it via options like `poolSize`:
+    ```js
+    mongoose.connect(uri, { poolSize: 5 });
+    ```
+
+---
+
+This completes the answers to all 60 questions. Practice coding these concepts in real projects to solidify your understanding. Let me know if you need further clarifications or examples! 😊

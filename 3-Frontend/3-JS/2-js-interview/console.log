@@ -38,7 +38,6 @@ console.log(null == undefined); // true
 console.log(!!null); //null= 0= !!0 =false
 console.log(typeof function() {}); // "function"
 console.log(typeof null); // "object"
-console.log([] instanceof Array); // true
 console.log([1, 2] + [3, 4]); // "1,23,4"
 console.log(true + false); //1+0 =  1
 console.log(true + true)//1+1 =2

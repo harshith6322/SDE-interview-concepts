@@ -1,0 +1,85 @@
+Here is a list of **60 practical and theoretical MongoDB and Mongoose interview questions** divided into different categories to help you prepare effectively.
+
+---
+
+### **Basic MongoDB Questions**
+1. What is MongoDB, and how does it differ from relational databases?
+2. What is a document in MongoDB, and how is it stored?
+3. Define collections and databases in MongoDB.
+4. What are the advantages of using MongoDB over traditional RDBMS?
+5. Explain BSON and how it is used in MongoDB.
+6. What is the difference between `find()` and `findOne()`?
+7. How do you insert a document into a MongoDB collection?
+8. What are the primary MongoDB data types?
+9. Explain the purpose of `_id` in MongoDB documents.
+10. How do you update a document in MongoDB?
+11. What is the difference between `updateOne` and `updateMany`?
+12. How do you delete documents in MongoDB? Explain `deleteOne` and `deleteMany`.
+13. What is the use of the `upsert` option in MongoDB?
+14. Explain the concept of sharding in MongoDB.
+15. What is replication in MongoDB, and how does it work?
+
+---
+
+### **Intermediate MongoDB Questions**
+16. How does indexing work in MongoDB? What are its types?
+17. What is a capped collection in MongoDB?
+18. How can you achieve schema validation in MongoDB?
+19. Explain the Aggregation Framework in MongoDB.
+20. What is the `$lookup` operator, and how is it used for joins in MongoDB?
+21. What is the difference between `$match` and `$project` in aggregation?
+22. How do you handle duplicate data in MongoDB?
+23. How can you ensure data integrity in MongoDB?
+24. What is a TTL index, and how can you use it?
+25. Explain the use of the `$group` stage in the Aggregation Framework.
+26. What is the purpose of `$facet` in aggregation pipelines?
+27. How does the WiredTiger storage engine work in MongoDB?
+28. What are MongoDB transactions, and when should you use them?
+29. What are the limitations of MongoDB transactions?
+30. What is a replica set, and why is it important in MongoDB?
+
+---
+
+### **Advanced MongoDB Questions**
+31. Explain the ACID properties in MongoDB.
+32. How do you monitor the performance of MongoDB?
+33. How can you optimize a query in MongoDB?
+34. What are compound indexes? How are they used?
+35. Explain the difference between horizontal and vertical scaling in MongoDB.
+36. What is the difference between embedded documents and referenced documents?
+37. How does MongoDB handle concurrency?
+38. What is the purpose of MongoDB's `$unwind` operator?
+39. How do you perform text search in MongoDB?
+40. What are database profiling tools available in MongoDB?
+41. What is the oplog in MongoDB?
+42. How does MongoDB Atlas differ from self-hosted MongoDB?
+43. How can you back up a MongoDB database?
+44. Explain the `$merge` stage in aggregation pipelines.
+45. What are wildcard indexes, and when are they used?
+
+---
+
+### **Basic Mongoose Questions**
+46. What is Mongoose, and why is it used in Node.js?
+47. How do you define a schema in Mongoose?
+48. What is the difference between `model` and `schema` in Mongoose?
+49. Explain how to define and use virtual properties in Mongoose.
+50. How do you perform validation in Mongoose?
+51. What are Mongoose middlewares? Give an example.
+52. How do you create a relationship between collections in Mongoose?
+53. Explain the `populate()` method in Mongoose.
+54. What is the purpose of the `toJSON` and `toObject` methods in Mongoose?
+55. How do you set default values in Mongoose schemas?
+
+---
+
+### **Advanced Mongoose Questions**
+56. What is the difference between `pre` and `post` middleware in Mongoose?
+57. How do you implement a transaction in Mongoose?
+58. What are discriminators in Mongoose, and when should you use them?
+59. How do you define compound indexes in Mongoose?
+60. Explain how Mongoose handles connection pooling.
+
+---
+
+These questions cover theoretical concepts, practical implementation, and advanced scenarios in MongoDB and Mongoose. Practice coding and querying directly in a MongoDB shell or Mongoose project to solidify your understanding.
